@@ -6,13 +6,12 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 14:08:05 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/01/05 13:16:53 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/01/05 16:05:21 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string>
-#include <iterator>
 
 int main(int argc, char const *argv[])
 {
@@ -32,6 +31,6 @@ int main(int argc, char const *argv[])
 				str.replace(j, 1, 1, argv[i][j] - 32);
 		std::cout << str;
 	}
-	std::cout << "\n";
-	return EXIT_SUCCESS;
+	std::cout << std::endl;
+	return (0);
 }

@@ -6,11 +6,21 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 19:03:06 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/01/05 20:18:44 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/01/06 13:36:45 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.hpp"
+#include "Contact.hpp"
+
+void	Contact::ft_setini(void)
+{
+	ini = 0;
+}
+
+size_t	Contact::ft_getini(void)
+{
+	return (ini);
+}
 
 std::string	Contact::ft_getname(void)
 {
@@ -41,6 +51,7 @@ void	Contact::ft_inicontact(std::string ininame, std::string inilastname,
 								std::string ininickname, std::string iniphone,
 								std::string iniworstsecret)
 {
+	ini = 1;
 	name = ininame;
 	lastname = inilastname;
 	nickname = ininickname;

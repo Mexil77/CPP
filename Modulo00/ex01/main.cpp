@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 16:04:22 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/01/06 13:58:22 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/01/10 18:25:01 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,13 @@ int main(void)
 	UslessBook	book;
 	std::string	word;
 	size_t		i;
-	size_t		election;
+	int			election;
 
 	std::cout << "Welcome to your Usless Contatct Book." << std::endl;
-	book.ft_inicontacts();
 	i = 0;
 	while (word.compare("EXIT"))
 	{
-		//std::cout << "Write one of this options :\n-ADD\n-SEARCH\n-EXIT" << std::endl;
+		std::cout << "Write one of this options :\n-ADD\n-SEARCH\n-EXIT" << std::endl;
 		std::cout << "What do you want to do?:" << std::endl;
 		std::cin >> word;
 		if (!word.compare("ADD"))

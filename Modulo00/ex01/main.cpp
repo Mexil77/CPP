@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mexil <mexil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 16:04:22 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/01/10 18:25:01 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/02/23 15:10:37 by mexil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,15 @@ int main(void)
 	UslessBook	book;
 	std::string	word;
 	size_t		i;
-	int			election;
+	std::string	election;
 
 	std::cout << "Welcome to your Usless Contatct Book." << std::endl;
 	i = 0;
-	while (word.compare("EXIT"))
+	do
 	{
 		std::cout << "Write one of this options :\n-ADD\n-SEARCH\n-EXIT" << std::endl;
 		std::cout << "What do you want to do?:" << std::endl;
-		std::cin >> word;
+		getline(std::cin, word);
 		if (!word.compare("ADD"))
 		{
 			ft_addnewcontact(&book, i);
@@ -58,15 +58,19 @@ int main(void)
 		{
 			book.ft_printallbook();
 			std::cout << "Wich user do you want to see?:" << std::endl;
-			std::cin >> election;
-			if (election > 0 && election < 9 && book.ft_contactexist(election - 1))
-				book.ft_prtintcontact(election - 1);
-			else
+			getline(std::cin, election);
+			if (isdigit(election[0]))
+			{
+				if (atoi(&election[0]) > 0 && atoi(&election[0]) < 9 && book.ft_contactexist(atoi(&election[0]) - 1))
+					book.ft_prtintcontact(atoi(&election[0]) - 1);
+				else
 				std::cout << "User doesn't exist." << std::endl;
+			}
 		}
 		else if (word.compare("EXIT"))
 			std::cout << word << ": Invalid comand." << std::endl;
 		std::cout << std::endl;
 	}
+	while (word.compare("EXIT"));
 	return 0;
 }

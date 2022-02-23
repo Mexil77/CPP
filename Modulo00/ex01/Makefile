@@ -3,30 +3,27 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+         #
+#    By: mexil <mexil@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/05 16:02:40 by emgarcia          #+#    #+#              #
-#    Updated: 2022/01/05 19:04:42 by emgarcia         ###   ########.fr        #
+#    Updated: 2022/02/23 11:53:23 by mexil            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	uslesscontactbook
+NAME		=	uslesscontactbook
 
-CC		=	clang++
-RM		=	rm -rf
+CPP			=	clang++
+RM			=	rm -rf
 
-SRCS	=	main.cpp UslessBook.cpp Contact.cpp
-OBJS	=	${SRCS:.cpp=.o}
+SRCS		=	main.cpp UslessBook.cpp Contact.cpp
+OBJS		=	${SRCS:.cpp=.o}
 
-CFLAGS	=	-Wall -Wextra -Werror
+CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98
 
 all: ${NAME}
 
-%.o: %.c
-	${CC} ${CFLAGS} -c $< -o $@
-
 ${NAME}: ${OBJS}
-	${CC} ${CFLAGS} ${OBJS} -o ${NAME}
+	${CPP} ${CXXFLAGS} ${OBJS} -o ${NAME}
 
 clean:
 	${RM} ${OBJS}

@@ -3,30 +3,27 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+         #
+#    By: mexil <mexil@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/05 13:19:02 by emgarcia          #+#    #+#              #
-#    Updated: 2022/01/05 13:31:13 by emgarcia         ###   ########.fr        #
+#    Updated: 2022/02/23 11:53:17 by mexil            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	megaphone
+NAME		=	megaphone
 
-CC		=	clang++
-RM		=	rm -rf
+CPP			=	clang++
+RM			=	rm -rf
 
-SRCS	=	megaphone.cpp
-OBJS	=	${SRCS:.cpp=.o}
+SRCS		=	megaphone.cpp
+OBJS		=	${SRCS:.cpp=.o}
 
-CFLAGS	=	-Wall -Wextra -Werror
+CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98
 
 all: ${NAME}
 
-%.o: %.c
-	${CC} ${CFLAGS} -c $< -o $@
-
 ${NAME}: ${OBJS}
-	${CC} ${CFLAGS} ${OBJS} -o ${NAME}
+	${CPP} ${CXXFLAGS} ${OBJS} -o ${NAME}
 
 clean:
 	${RM} ${OBJS}

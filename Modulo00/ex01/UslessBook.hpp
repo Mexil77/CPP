@@ -3,18 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   UslessBook.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mexil <mexil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 11:35:23 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/01/10 18:14:59 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/02/23 15:12:21 by mexil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef USLESSBOOK_HPP
+# define USLESSBOOK_HPP
 
-#include <string>
-#include <iostream>
-#include "Contact.hpp"
+# include <string>
+# include <stdio.h>
+# include <iostream>
+# include <cstring>
+# include <cstdlib>
+# include <iostream>
+# include <iomanip>
+# include "Contact.hpp"
 
 class	UslessBook
 {

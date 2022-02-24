@@ -3,30 +3,27 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+         #
+#    By: mexil <mexil@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/11 15:22:10 by emgarcia          #+#    #+#              #
-#    Updated: 2022/01/11 15:24:52 by emgarcia         ###   ########.fr        #
+#    Updated: 2022/02/24 12:58:10 by mexil            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	test
+NAME		=	test
 
-CC		=	clang++
-RM		=	rm -rf
+CPP			=	clang++
+RM			=	rm -rf
 
-SRCS	=	Zombie.cpp newZombie.cpp randomChump.cpp main.cpp
-OBJS	=	${SRCS:.cpp=.o}
+SRCS		=	Zombie.cpp newZombie.cpp randomChump.cpp main.cpp
+OBJS		=	${SRCS:.cpp=.o}
 
-CFLAGS	=	-Wall -Wextra -Werror
+CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98
 
 all: ${NAME}
 
-%.o: %.c
-	${CC} ${CFLAGS} -c $< -o $@
-
 ${NAME}: ${OBJS}
-	${CC} ${CFLAGS} ${OBJS} -o ${NAME}
+	${CPP} ${CXXFLAGS} ${OBJS} -o ${NAME}
 
 clean:
 	${RM} ${OBJS}

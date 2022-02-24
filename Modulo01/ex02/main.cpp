@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mexil <mexil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 15:03:42 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/01/15 17:14:02 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/02/24 15:39:03 by mexil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,14 @@
 
 int main(void)
 {
-	std::string s = "Hola mundo";
-	std::string *p = &s;
-	std::string r&;
+	std::string sbrain = "HI THIS IS BRAIN";
+	std::string *stringPTR = &sbrain;
+	std::string &stringREF = sbrain;
 	
-	std::cout << "string original valor " << s << std::endl;
-	std::cout << "string original direccion de memoria " << &s << std::endl;
-	std::cout << "puntero valor " << p << std::endl;
-	std::cout << "puntero apunta a " << *p << std::endl;
-	std::cout << "puntero direccion de memoria " << &p << std::endl;
-	std::cout << "referencia valor" << r << std::endl;
-	std::cout << "referencia direccion de memoria" << &r << std::endl;
+	std::cout << "Direccion de memoria de brain por sbrain " << &sbrain << std::endl;
+	std::cout << "Direccion de memoria de brain por strptr " << stringPTR << std::endl;
+	std::cout << "Direccion de memoria de brain por strref " << &stringREF << std::endl;
+	std::cout << "Valor de brain por strptr " << *stringPTR << std::endl;
+	std::cout << "Valor de brain por strref " << stringREF << std::endl;
 	return 0;
 }

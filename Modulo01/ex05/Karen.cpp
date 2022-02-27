@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 16:00:29 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/02/25 16:20:36 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/02/27 17:53:17 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,13 @@ void	Karen::error(void)
 
 void	Karen::complain(std::string level)
 {
-	void	(*funptr)(void);
+	std::string	options[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	void (Karen::*arrPtr[])(void) = {&Karen::debug, &Karen::info, &Karen::warning, &Karen::error};
+	size_t	i;
 
-	funptr = this->debug;
-	std::cout << "level " << level << std::endl;
-	this->debug();
+	i = -1;
+	while (++i < 4)
+		if (options[i] == level)
+			return (this->*arrPtr[i])();
+	std::cout << "Karen doesnt know " << level << " complain." << std::endl;
 }

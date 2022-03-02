@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 19:14:24 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/03/01 18:31:16 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/03/02 12:42:51 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ Fixed::Fixed(void)
 Fixed::Fixed(const Fixed& obj)
 {
 	std::cout << "Copy constructor called." << std::endl;
-	this->_Z = obj.getRawBits();
+	this->operator=(obj);
 }
 
 Fixed::~Fixed(void)

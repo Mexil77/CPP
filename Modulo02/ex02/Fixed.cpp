@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 15:33:07 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/03/03 15:33:25 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/03/04 11:06:40 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,54 @@ Fixed&	Fixed::operator=(Fixed const &fix)
 	std::cout << "Assignation operator called" << std::endl;
 	this->setRawBits(fix.getRawBits());
 	return (*this);
+}
+
+bool	Fixed::operator>(Fixed const &fix) const
+{
+	if (this->toFloat() > fix.toFloat())
+		return (true);
+	else
+		return (false);
+}
+
+bool	Fixed::operator>=(Fixed const &fix) const
+{
+	if (this->toFloat() >= fix.toFloat())
+		return (true);
+	else
+		return (false);
+}
+
+bool	Fixed::operator<(Fixed const &fix) const
+{
+	if (this->toFloat() < fix.toFloat())
+		return (true);
+	else
+		return (false);
+}
+
+bool	Fixed::operator<=(Fixed const &fix) const
+{
+	if (this->toFloat() <= fix.toFloat())
+		return (true);
+	else
+		return (false);
+}
+
+bool	Fixed::operator==(Fixed const &fix) const
+{
+	if (this->toFloat() == fix.toFloat())
+		return (true);
+	else
+		return (false);
+}
+
+bool	Fixed::operator!=(Fixed const &fix) const
+{
+	if (this->toFloat() != fix.toFloat())
+		return (true);
+	else
+		return (false);
 }
 
 int	Fixed::getRawBits(void) const

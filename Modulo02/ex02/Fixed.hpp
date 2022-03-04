@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 15:32:57 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/03/03 15:33:40 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/03/04 11:05:30 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ class	Fixed
 		int		toInt(void) const;
 
 		Fixed&		operator=(Fixed const &fix);
+		bool		operator>(Fixed const &fix) const;
+		bool		operator>=(Fixed const &fix) const;
+		bool		operator<(Fixed const &fix) const;
+		bool		operator<=(Fixed const &fix) const;
+		bool		operator==(Fixed const &fix) const;
+		bool		operator!=(Fixed const &fix) const;
 
 		Fixed(void);
 		Fixed(const Fixed&);

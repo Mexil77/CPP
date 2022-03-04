@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 15:33:07 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/03/04 12:34:57 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/03/04 13:22:19 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,32 @@ Fixed&	Fixed::operator / (Fixed const &fix) const
 		std::cout << "divide by 0 is imposible the value of the object going to be 0." << std::endl;
 		aux = new Fixed(0.0f);
 	}
+	return (*aux);
+}
+
+Fixed&	Fixed::operator ++ (void)
+{
+	this->_Z++;
+	return (*this);
+}
+
+Fixed&	Fixed::operator ++ (int)
+{
+	Fixed	*aux = new Fixed(this->toFloat());
+	++*this;
+	return (*aux);
+}
+
+Fixed&	Fixed::operator -- (void)
+{
+	this->_Z--;
+	return (*this);
+}
+
+Fixed&	Fixed::operator -- (int)
+{
+	Fixed	*aux = new Fixed(this->toFloat());
+	--*this;
 	return (*aux);
 }
 

@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 15:34:06 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/03/04 12:36:04 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/03/04 13:22:59 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int main( void ) {
 	Fixed d = a - b;
 	Fixed e = a * b;
 	Fixed f = a / b;
+	Fixed g = e;
+	Fixed h = f;
 
 	if (a > b)
 		std::cout << "A (" << a << ") es mayor que B (" << b << ")" << std::endl;
@@ -47,6 +49,20 @@ int main( void ) {
 	std::cout << "C : " << c << std::endl;
 	std::cout << "D : " << d << std::endl;
 	std::cout << "E : " << e << std::endl;
+	std::cout << "F : " << f << std::endl;
+	c++;
+	++d;
+	std::cout << "C : " << c << std::endl;
+	std::cout << "D : " << d << std::endl;
+	if (g == ++e)
+		std::cout << "G es igual que E" << std::endl;
+	else
+		std::cout << "G es distinto que E" << std::endl;
+	std::cout << "E : " << e << std::endl;
+	if (h == f)
+		std::cout << "H es igual que F" << std::endl;
+	else
+		std::cout << "H es distinto que F" << std::endl;
 	std::cout << "F : " << f << std::endl;
 	// Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
 

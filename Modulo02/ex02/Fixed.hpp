@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 15:32:57 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/03/04 11:05:30 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/03/04 12:21:23 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,17 @@ class	Fixed
 		float	toFloat(void) const;
 		int		toInt(void) const;
 
-		Fixed&		operator=(Fixed const &fix);
-		bool		operator>(Fixed const &fix) const;
-		bool		operator>=(Fixed const &fix) const;
-		bool		operator<(Fixed const &fix) const;
-		bool		operator<=(Fixed const &fix) const;
-		bool		operator==(Fixed const &fix) const;
-		bool		operator!=(Fixed const &fix) const;
+		Fixed&		operator = (Fixed const &fix);
+		bool		operator > (Fixed const &fix) const;
+		bool		operator >= (Fixed const &fix) const;
+		bool		operator < (Fixed const &fix) const;
+		bool		operator <= (Fixed const &fix) const;
+		bool		operator == (Fixed const &fix) const;
+		bool		operator != (Fixed const &fix) const;
+		Fixed&		operator + (Fixed const &fix) const;
+		Fixed&		operator - (Fixed const &fix) const;
+		Fixed&		operator * (Fixed const &fix) const;
+		Fixed&		operator / (Fixed const &fix) const;
 
 		Fixed(void);
 		Fixed(const Fixed&);
@@ -45,6 +49,6 @@ class	Fixed
 		int	_Z;
 };
 
-std::ostream&	operator<<(std::ostream &o, Fixed const &fix);
+std::ostream&	operator << (std::ostream &o, Fixed const &fix);
 
 #endif

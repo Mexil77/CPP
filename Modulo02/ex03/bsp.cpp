@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 15:13:52 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/03/06 18:30:04 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/03/07 13:33:53 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ bool bsp( Point const a, Point const b, Point const c, Point const point)
 	Point	d = b - a;
 	Point	e = c - a;
 
-	t1 = ((getY(e) * (getX(point) - getX(a))) + (getX(e) * (getY(a) - getY(point)))) / ((getX(d) * getY(e)) - (getY(d) * getX(e)));
 	if (getY(e))
 		sp = getY(e);
 	else
-		sp = 0.0000001f;
+		sp = 0.00001f;
+	t1 = ((sp * (getX(point) - getX(a))) - (getX(e) * (getY(point) - getY(a)))) / ((getX(d) * sp) - (getY(d) * getX(e)));
 	t2 = (getY(point) - getY(a) - (t1 * getY(d))) / sp;
-	return (t1 >= 0 && t2 >= 0 && (t1 + t2) < 1);
+	return (t1 > 0 && t2 > 0 && (t1 + t2) < 1);
 }

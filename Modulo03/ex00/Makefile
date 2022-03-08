@@ -6,16 +6,16 @@
 #    By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/07 17:34:53 by emgarcia          #+#    #+#              #
-#    Updated: 2022/03/07 17:35:13 by emgarcia         ###   ########.fr        #
+#    Updated: 2022/03/08 11:46:51 by emgarcia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	fixed
+NAME		=	clap
 
 CPP			=	clang++
 RM			=	rm -rf
 
-SRCS		=	main.cpp
+SRCS		=	main.cpp ClapTrap.cpp
 OBJS		=	${SRCS:.cpp=.o}
 
 CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98

@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 13:02:15 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/03/08 14:46:21 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/03/11 16:21:35 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,14 @@ class	ClapTrap
 		unsigned int	getEnrP(void);
 		unsigned int	getAttD(void);
 
+		ClapTrap&	operator = (ClapTrap const &clap);
+
 		ClapTrap(void);
 		ClapTrap(std::string Name);
 		ClapTrap(std::string N, unsigned int HP, unsigned int EP, unsigned int AD);
+		ClapTrap(const ClapTrap&);
 		~ClapTrap(void);
-	private:
+	protected:
 		std::string		_Name;
 		unsigned int	_Hitpoints;
 		unsigned int	_EnergyPoints;

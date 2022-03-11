@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 12:01:13 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/03/10 18:52:02 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/03/11 13:34:39 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ ClapTrap::ClapTrap(std::string Name)
 ClapTrap::ClapTrap(std::string N, unsigned int HP, unsigned int EP, unsigned int AD) : _Name(N), _Hitpoints(HP), _EnergyPoints(EP), _AttackDamage(AD)
 {
 	std::cout << "A ClapTrap has been created with " << _Name << " name." << std::endl;
+}
+
+ClapTrap::ClapTrap(const ClapTrap& obj)
+{
+	this->operator=(obj);
 }
 
 ClapTrap::~ClapTrap(void)
@@ -112,6 +117,15 @@ void	ClapTrap::setEnrP(unsigned int points)
 void	ClapTrap::setAttD(unsigned int points)
 {
 	this->_AttackDamage = points;
+}
+
+ClapTrap&	ClapTrap::operator = (ClapTrap const &clap)
+{
+	this->_Name = clap._Name;
+	this->_Hitpoints = clap._Hitpoints;
+	this->_EnergyPoints = clap._EnergyPoints;
+	this->_AttackDamage = clap._AttackDamage;
+	return (*this);
 }
 
 std::ostream&	operator << (std::ostream &o, ClapTrap &clap)

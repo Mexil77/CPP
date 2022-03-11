@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 12:00:57 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/03/10 13:27:05 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/03/11 13:16:34 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,11 @@ class	FragTrap : virtual public ClapTrap
 	public:
 		void	highFivesGuys(void);
 
+		FragTrap&	operator = (FragTrap const &frag);
+
 		FragTrap(void);
 		FragTrap(std::string Name);
+		FragTrap(const FragTrap&);
 		virtual	~FragTrap(void);
 };
 

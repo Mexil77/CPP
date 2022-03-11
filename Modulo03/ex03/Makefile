@@ -6,7 +6,7 @@
 #    By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 12:01:18 by emgarcia          #+#    #+#              #
-#    Updated: 2022/03/10 12:03:08 by emgarcia         ###   ########.fr        #
+#    Updated: 2022/03/11 14:01:29 by emgarcia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ RM			=	rm -rf
 SRCS		=	main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
 OBJS		=	${SRCS:.cpp=.o}
 
-CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98
+CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98 -Wshadow -Wno-shadow
 
 all: ${NAME}
 

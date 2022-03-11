@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 12:00:50 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/03/11 14:09:19 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/03/11 15:59:15 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,12 @@ DiamondTrap::DiamondTrap(std::string Name) : ScavTrap(Name), FragTrap(Name)
 	this->ClapTrap::_Name = Name + "_clap_name";
 	this->DiamondTrap::_Name = Name;
 	std::cout << "A DiamondTrap has been created with " << this->DiamondTrap::_Name << " name." << std::endl;
-	this->_Hitpoints = this->FragTrap::_Hitpoints;
-	this->_EnergyPoints = this->ScavTrap::_EnergyPoints;
-	this->_AttackDamage = this->FragTrap::_AttackDamage;
+	this->_Hitpoints = 100;
+	this->_EnergyPoints = 50;
+	this->_AttackDamage = 30;
+	// this->_Hitpoints = this->FragTrap::_Hitpoints;
+	// this->_EnergyPoints = this->ScavTrap::_EnergyPoints;
+	// this->_AttackDamage = this->FragTrap::_AttackDamage;
 }
 
 DiamondTrap::DiamondTrap(const DiamondTrap& obj)

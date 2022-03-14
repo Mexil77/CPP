@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/13 18:04:11 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/03/14 22:54:44 by emgarcia         ###   ########.fr       */
+/*   Created: 2022/03/14 19:36:26 by emgarcia          #+#    #+#             */
+/*   Updated: 2022/03/14 22:54:06 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
-#include "Cat.hpp"
+#ifndef CAT_HPP
+# define CAT_HPP
 
-int main(void)
+# include "Animal.hpp"
+
+class Cat : public Animal
 {
-	const Animal* meta = new Animal();
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
-	std::cout << j->getType() << " " << std::endl;
-	std::cout << i->getType() << " " << std::endl;
-	i->makeSound(); //will output the cat sound!
-	j->makeSound();
-	meta->makeSound();
+	public:
+		Cat(void);
+		Cat(const Cat &obj);
+		~Cat(void);
 
-	return 0;
-}
+		Cat&	operator = (const Cat &cat);
+
+		void	makeSound(void) const;
+	private:
+};
+
+#endif

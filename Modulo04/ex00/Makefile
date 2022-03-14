@@ -6,16 +6,16 @@
 #    By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/13 18:02:15 by emgarcia          #+#    #+#              #
-#    Updated: 2022/03/13 18:03:02 by emgarcia         ###   ########.fr        #
+#    Updated: 2022/03/14 22:55:00 by emgarcia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	algo
+NAME		=	animal
 
 CPP			=	clang++
 RM			=	rm -rf
 
-SRCS		=	main.cpp
+SRCS		=	main.cpp Animal.cpp Dog.cpp Cat.cpp
 OBJS		=	${SRCS:.cpp=.o}
 
 CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98 -Wshadow -Wno-shadow

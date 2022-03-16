@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/15 15:55:13 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/03/16 13:51:58 by emgarcia         ###   ########.fr       */
+/*   Created: 2022/03/16 13:55:41 by emgarcia          #+#    #+#             */
+/*   Updated: 2022/03/16 14:18:15 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(void)
 		// j->showIdeas();
 		delete i;
 		delete j;
-		system("leaks brain");
+		system("leaks abstract");
 		std::cout << std::endl;
 	}
 	{
@@ -42,7 +42,7 @@ int	main(void)
 		i = -1;
 		while (++i < 100)
 			delete animals[i];
-		system("leaks brain");
+		system("leaks abstract");
 	}
     return 0;
 }

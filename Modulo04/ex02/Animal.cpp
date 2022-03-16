@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 13:55:04 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/03/16 14:16:48 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/03/16 16:38:28 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,10 @@ void	Animal::setType(std::string type)
 	this->_type = type;
 }
 
-void	Animal::makeSound(void) const
-{
-	std::cout << "Weird sound is listen from a " << this->_type << " of animal." << std::endl;
-}
+void	Animal::makeSound(void) {}
 
-void	Animal::showIdeas(void) const
-{
-}
+void	Animal::makeSound(void) const {}
+
+void	Animal::showIdeas(void) {}
+
+void	Animal::showIdeas(void) const {}

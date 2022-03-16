@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 13:55:15 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/03/16 13:55:18 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/03/16 16:34:22 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ Brain::Brain(void)
 	this->_ideas = new std::string[100];
 	i = -1;
 	while (++i < 100)
-		_ideas[i] = std::to_string(i + 1) + " idea.";
+		_ideas[i] = "Idea #" + std::to_string(i + 1);
 	std::cout << "Brain has been created with a default constructor." << std::endl;
 }
 

@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 13:55:41 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/03/16 14:18:15 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/03/16 16:40:41 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,13 @@
 int	main(void)
 {
 	{
-		const Animal* i = new Cat();
-		const Animal* j = new Dog();
-		// i->showIdeas();
-		// j->showIdeas();
+		const Animal*	i = new Cat();
+		const Animal*	j = new Dog();
+
+		i->makeSound();
+		j->makeSound();
+		i->showIdeas();
+		j->showIdeas();
 		delete i;
 		delete j;
 		system("leaks abstract");
@@ -39,6 +42,7 @@ int	main(void)
 		}
 		animals[35]->makeSound();
 		animals[75]->makeSound();
+		animals[35]->showIdeas();
 		i = -1;
 		while (++i < 100)
 			delete animals[i];

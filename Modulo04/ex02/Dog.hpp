@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 13:55:58 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/03/16 13:55:59 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/03/16 16:40:26 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ class Dog : public Animal
 
 		Dog&	operator = (const Dog &dog);
 
+		void	makeSound(void);
 		void	makeSound(void) const;
+		void	showIdeas(void);
 		void	showIdeas(void) const;
 	private:
 		Brain	*dogBrain;

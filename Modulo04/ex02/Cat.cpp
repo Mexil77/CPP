@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 13:55:31 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/03/16 13:58:47 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/03/16 16:39:20 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,23 @@ Cat&	Cat::operator=(const Cat &cat)
 	return (*this);
 }
 
+void	Cat::makeSound(void)
+{
+	std::cout << "The cat make mewwww!!!!" << std::endl;
+}
+
 void	Cat::makeSound(void) const
 {
 	std::cout << "The cat make mewwww!!!!" << std::endl;
+}
+
+void	Cat::showIdeas(void)
+{
+	size_t	i;
+
+	i = -1;
+	while (++i < 100)
+		std::cout << catBrain->getIdea(i) << std::endl;
 }
 
 void	Cat::showIdeas(void) const
@@ -50,5 +64,5 @@ void	Cat::showIdeas(void) const
 
 	i = -1;
 	while (++i < 100)
-		std::cout << this->catBrain->getIdea(i) << std::endl;
+		std::cout << catBrain->getIdea(i) << std::endl;
 }

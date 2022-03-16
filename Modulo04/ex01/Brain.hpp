@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 16:03:09 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/03/15 17:53:34 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/03/16 12:48:10 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,8 @@ class Brain
 
 		std::string	getIdea(size_t idea);
 		std::string	&getIdeas(void);
-		void		freeIdeas(void);
 	private:
-		std::string	*ideas = new std::string[100];
+		std::string	*_ideas;
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:56:47 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/03/15 17:51:22 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/03/16 12:48:21 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ Cat::Cat(const Cat &obj) : Animal()
 
 Cat::~Cat()
 {
-	this->catBrain->freeIdeas();
 	delete this->catBrain;
 	std::cout << "A cat has been destroyed." << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 17:29:19 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/03/17 17:34:34 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/03/17 18:50:21 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,14 @@
 Character::Character(void) : _name("Unknown name") {}
 
 Character::Character(std::string name) : _name(name) {}
+
+Character::Character(const Character &obj)
+{
+	_name = obj._name;
+	for (size_t i = 0; i < 4; i++)
+		if (!obj._materias[i]->getType().compare("Unknown"))
+			_materias[i] = obj._materias[i];
+}
 
 std::string const	&Character::getName(void) const {return (this->_name);}
 

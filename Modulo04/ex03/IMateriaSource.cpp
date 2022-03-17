@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   IMateriaSource.hpp                                 :+:      :+:    :+:   */
+/*   IMateriaSource.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/17 17:16:46 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/03/17 18:56:04 by emgarcia         ###   ########.fr       */
+/*   Created: 2022/03/17 19:29:37 by emgarcia          #+#    #+#             */
+/*   Updated: 2022/03/17 19:32:13 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef IMATERIALSOURCE_HPP
-# define IMATERIALSOURCE_HPP
+#include "IMateriaSource.hpp"
 
-# include "AMateria.hpp"
+IMateriaSource::~IMateriaSource(void) {}
 
-class IMateriaSource
-{
-	public:
-		virtual ~IMateriaSource() {}
-		virtual void learnMateria(AMateria*) = 0;
-		virtual AMateria* createMateria(std::string const & type) = 0;
-};
+void	IMateriaSource::learnMateria(AMateria*) {}
 
-#endif
+AMateria	*IMateriaSource::createMateria(std::string const &type) {}

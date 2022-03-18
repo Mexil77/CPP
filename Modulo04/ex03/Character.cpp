@@ -6,25 +6,36 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 17:29:19 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/03/18 13:50:06 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/03/18 14:14:30 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Character.hpp"
 
-Character::Character(void) : _name("Unknown name") {}
+Character::Character(void) : _name("Unknown name")
+{
+	for (size_t i = 0; i < 4; i++)
+		_materias[i] = NULL;
+}
 
-Character::Character(std::string name) : _name(name) {}
+Character::Character(std::string name) : _name(name)
+{
+	for (size_t i = 0; i < 4; i++)
+		_materias[i] = NULL;
+}
 
 Character::Character(const Character &obj)
 {
 	_name = obj._name;
 	for (size_t i = 0; i < 4; i++)
-		if (!obj._materias[i]->getType().compare("Unknown"))
-			_materias[i] = obj._materias[i];
+		_materias[i] = obj._materias[i];
 }
 
-Character::~Character(void) {}
+Character::~Character(void)
+{
+	for (size_t i = 0; i < 4; i++)
+		delete _materias[i];
+}
 
 std::string const	&Character::getName(void) const {return (this->_name);}
 
@@ -32,10 +43,10 @@ void	Character::equip(AMateria *m)
 {
 	for (size_t i = 0; i < 4; i++)
 	{
-		if (this->_materias[i]->getType().compare("Unkown"))
+		if (!this->_materias[i])
 		{
 			this->_materias[i] = m;
-			i = 4;
+			return ;
 		}
 	}
 	std::cout << "Materias are full of capacity" << std::endl;
@@ -48,7 +59,7 @@ void	Character::unequip(int idx)
 		std::cout << "Idx doesnt exist." << std::endl;
 		return ;
 	}
-	_materias[idx]->setType("Unkown");
+	_materias[idx] = NULL;
 }
 
 void	Character::use(int idx, ICharacter &target)

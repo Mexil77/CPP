@@ -6,21 +6,29 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 18:53:45 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/03/18 13:59:27 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/03/18 14:07:25 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MateriaSource.hpp"
 
-MateriaSource::MateriaSource(void) {}
+MateriaSource::MateriaSource(void)
+{
+	for (size_t i = 0; i < 4; i++)
+		_materias[i] = NULL;
+}
 
-MateriaSource::~MateriaSource(void) {}
+MateriaSource::~MateriaSource(void)
+{
+	for (size_t i = 0; i < 4; i++)
+		delete _materias[i];
+}
 
 void	MateriaSource::learnMateria(AMateria *materia)
 {
 	for (size_t i = 0; i < 4; i++)
 	{
-		if (!_materias[i]->getType().compare("Unknown"))
+		if (!_materias[i])
 		{
 			_materias[i] = materia;
 			return ;

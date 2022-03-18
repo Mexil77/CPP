@@ -6,7 +6,7 @@
 #    By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/16 16:57:27 by emgarcia          #+#    #+#              #
-#    Updated: 2022/03/16 16:57:42 by emgarcia         ###   ########.fr        #
+#    Updated: 2022/03/18 13:56:06 by emgarcia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME		=	material
 CPP			=	clang++
 RM			=	rm -rf
 
-SRCS		=	main.cpp
+SRCS		=	main.cpp AMateria.cpp Character.cpp Cure.cpp Ice.cpp MateriaSource.cpp
 OBJS		=	${SRCS:.cpp=.o}
 
 CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98

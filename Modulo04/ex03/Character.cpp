@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 17:29:19 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/03/17 18:50:21 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/03/18 13:50:06 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ Character::Character(const Character &obj)
 		if (!obj._materias[i]->getType().compare("Unknown"))
 			_materias[i] = obj._materias[i];
 }
+
+Character::~Character(void) {}
 
 std::string const	&Character::getName(void) const {return (this->_name);}
 

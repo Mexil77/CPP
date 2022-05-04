@@ -6,16 +6,16 @@
 #    By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/03 19:01:28 by emgarcia          #+#    #+#              #
-#    Updated: 2022/05/03 19:02:18 by emgarcia         ###   ########.fr        #
+#    Updated: 2022/05/04 13:44:52 by emgarcia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	Bureaucrats
+NAME		=	Forms
 
 CPP			=	clang++
 RM			=	rm -rf
 
-SRCS		=	main.cpp Bureaucrat.cpp
+SRCS		=	main.cpp Bureaucrat.cpp Form.cpp
 OBJS		=	${SRCS:.cpp=.o}
 
 CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98

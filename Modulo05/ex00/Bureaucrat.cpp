@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 15:04:35 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/05/04 13:37:34 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/05/04 19:30:55 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,12 @@ Bureaucrat::Bureaucrat(const Bureaucrat &obj): _name(obj._name), _grade(obj._gra
 	std::cout << "The Bureaucrat has been created with " << obj._name << " as a Name and grade: " << obj._grade << std::endl;
 }
 
-Bureaucrat::Bureaucrat(std::string name, int grade): _name(name)
+Bureaucrat::Bureaucrat(std::string name, int grade): _name(name), _grade(grade)
 {
 	if (grade < 1)
 		throw Bureaucrat::GradeTooHighException();
 	else if (grade > 150)
 		throw Bureaucrat::GradeTooLowException();
-	this->_grade = grade;
 	std::cout << "The Bureaucrat has been created with " << name << " as a Name and grade: " << grade << std::endl;
 }
 
@@ -40,7 +39,6 @@ Bureaucrat::~Bureaucrat()
 Bureaucrat&	Bureaucrat::operator = (Bureaucrat const &bur)
 {
 	std::cout << "The Bureaucrat has been created with " << this->_name << " as a Name and = operator" << std::endl;
-	// this->_name = bur._name;
 	this->_grade = bur._grade;
 	return (*this);
 }

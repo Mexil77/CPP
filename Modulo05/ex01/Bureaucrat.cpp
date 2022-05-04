@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 19:01:35 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/05/03 19:01:47 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/05/04 19:28:41 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,17 @@ Bureaucrat::Bureaucrat(void) : _name("Unknown Name"), _grade(150)
 	std::cout << "The Bureaucrat has been created with a Unknown Name and grade: 150." << std::endl;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &obj)
+Bureaucrat::Bureaucrat(const Bureaucrat &obj): _name(obj._name), _grade(obj._grade)
 {
 	std::cout << "The Bureaucrat has been created with " << obj._name << " as a Name and grade: " << obj._grade << std::endl;
-	this->operator=(obj);
 }
 
-Bureaucrat::Bureaucrat(std::string name, int grade)
+Bureaucrat::Bureaucrat(std::string name, int grade): _name(name), _grade(grade)
 {
 	if (grade < 1)
 		throw Bureaucrat::GradeTooHighException();
 	else if (grade > 150)
 		throw Bureaucrat::GradeTooLowException();
-	this->_name = name;
-	this->_grade = grade;
 	std::cout << "The Bureaucrat has been created with " << name << " as a Name and grade: " << grade << std::endl;
 }
 
@@ -41,8 +38,7 @@ Bureaucrat::~Bureaucrat()
 
 Bureaucrat&	Bureaucrat::operator = (Bureaucrat const &bur)
 {
-	std::cout << "The Bureaucrat has been created with " << bur._name << " as a Name and = operator" << std::endl;
-	this->_name = bur._name;
+	std::cout << "The Bureaucrat has been created with " << this->_name << " as a Name and = operator" << std::endl;
 	this->_grade = bur._grade;
 	return (*this);
 }
@@ -73,6 +69,20 @@ void	Bureaucrat::decrementGrade (void)
 		this->_grade += 1;
 		std::cout << "Decrease success to " << this->_grade << std::endl;
 	}
+}
+
+void	Bureaucrat::signForm(Form &form)
+{
+	try
+	{
+		form.beSigned(*this);
+		std::cout << this->_name << " signs " << form.getName() << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << this->_name << " cannot sign " << form.getName() << " because " << e.what() << '\n';
+	}
+	
 }
 
 std::ostream&	operator << (std::ostream &o, Bureaucrat &bur)

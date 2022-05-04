@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 13:21:13 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/05/03 19:14:40 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/05/04 13:35:29 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ class Bureaucrat
 		};
 		
 	private:
-		std::string	_name;
-		int			_grade;
+		const std::string	_name;
+		int					_grade;
 };
 
 std::ostream&	operator << (std::ostream &o, Bureaucrat &bur);

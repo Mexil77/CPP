@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:07:39 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/05/05 17:40:04 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/05/05 18:19:45 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	PresidentialPardonForm::execute(Bureaucrat const &executor) const
 		throw Form::FormNotSignedException();
 	else if (executor.getGrade() > this->getGradeExecute())
 		throw Bureaucrat::GradeTooLowException();
-	std::cout << "PresidentialPardon form has been executed." << std::endl;
+	std::cout << this->_target << " has been pardoned by Zafod Beeblebrox." << std::endl;
 }
 
 std::ostream&	operator << (std::ostream &o, PresidentialPardonForm &shu)

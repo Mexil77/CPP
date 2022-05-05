@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 15:59:41 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/05/05 17:39:00 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/05/05 18:43:42 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,18 @@ std::string	RobotomyRequestForm::getTarget(void) const {return (this->_target);}
 
 void	RobotomyRequestForm::execute(Bureaucrat const &executor) const
 {
+	srand (time(NULL));
+	int	random = rand() % 10 + 1;
+
 	if (!this->isSigned())
 		throw Form::FormNotSignedException();
 	else if (executor.getGrade() > this->getGradeExecute())
 		throw Bureaucrat::GradeTooLowException();
-	std::cout << "RobotomyRequest form has been executed." << std::endl;
+	std::cout << random << "<-- Number" << std::endl;
+	if (random % 2 == 0)
+		std::cout << this->_target << " has been robotomized successfully." << std::endl;
+	else
+		std::cout << this->_target << " robotomized has feilure." << std::endl;
 }
 
 std::ostream&	operator << (std::ostream &o, RobotomyRequestForm &shu)

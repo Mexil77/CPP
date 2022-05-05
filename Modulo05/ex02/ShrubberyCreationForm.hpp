@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 12:31:27 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/05/05 17:30:11 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/05/05 18:52:38 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SHRUBBERYCREATIONFORM_HPP
 
 # include "Form.hpp"
+# include <fstream>
 
 class ShrubberyCreationForm : public Form
 {

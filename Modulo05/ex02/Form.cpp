@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 11:55:00 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/05/05 14:07:37 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/05/05 17:31:46 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,15 @@ void	Form::beSigned(Bureaucrat &bur)
 		throw Form::GradeTooLowException();
 	else
 		this->_signed = true;
+}
+
+void	Form::execute(Bureaucrat const &executor) const
+{
+	if (!this->_signed)
+		throw Form::FormNotSignedException();
+	else if (executor.getGrade() > this->getGradeExecute())
+		throw Bureaucrat::GradeTooLowException();
+	std::cout << "Neutral form has been executed." << std::endl;
 }
 
 std::ostream&	operator << (std::ostream &o, Form &form)

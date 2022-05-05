@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
+/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/05 12:31:27 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/05/05 17:30:11 by emgarcia         ###   ########.fr       */
+/*   Created: 2022/05/05 15:59:38 by emgarcia          #+#    #+#             */
+/*   Updated: 2022/05/05 17:39:17 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHRUBBERYCREATIONFORM_HPP
-# define SHRUBBERYCREATIONFORM_HPP
+#ifndef ROBOTOMYREQUESTFORM_HPP
+# define ROBOTOMYREQUESTFORM_HPP
 
 # include "Form.hpp"
 
-class ShrubberyCreationForm : public Form
+class RobotomyRequestForm : public Form
 {
 	public:
-		ShrubberyCreationForm(void);
-		ShrubberyCreationForm(const ShrubberyCreationForm &obj);
-		ShrubberyCreationForm(std::string target);
-		~ShrubberyCreationForm();
+		RobotomyRequestForm(void);
+		RobotomyRequestForm(const RobotomyRequestForm &obj);
+		RobotomyRequestForm(std::string target);
+		~RobotomyRequestForm();
 
-		ShrubberyCreationForm&	operator = (const ShrubberyCreationForm &shu);
+		RobotomyRequestForm&	operator = (const RobotomyRequestForm &shu);
 
 		std::string	getTarget(void) const;
 
@@ -32,6 +32,6 @@ class ShrubberyCreationForm : public Form
 		const std::string	_target;
 };
 
-std::ostream&	operator << (std::ostream &o, ShrubberyCreationForm &shu);
+std::ostream&	operator << (std::ostream &o, RobotomyRequestForm &shu);
 
 #endif

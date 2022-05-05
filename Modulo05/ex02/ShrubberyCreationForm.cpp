@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 12:31:24 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/05/05 14:16:17 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/05/05 17:38:05 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,15 @@ ShrubberyCreationForm&	ShrubberyCreationForm::operator = (const ShrubberyCreatio
 }
 
 std::string	ShrubberyCreationForm::getTarget(void) const {return (this->_target);}
+
+void	ShrubberyCreationForm::execute(Bureaucrat const &executor) const
+{
+	if (!this->isSigned())
+		throw Form::FormNotSignedException();
+	else if (executor.getGrade() > this->getGradeExecute())
+		throw Bureaucrat::GradeTooLowException();
+	std::cout << "Shrubbery form has been executed." << std::endl;
+}
 
 std::ostream&	operator << (std::ostream &o, ShrubberyCreationForm &shu)
 {

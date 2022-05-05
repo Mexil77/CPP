@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 13:00:59 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/05/04 13:38:29 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/05/05 13:35:18 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	main (void)
 {
-
 	Bureaucrat	a("Pedro", 146);
 	Bureaucrat	b("Dario", 5);
 	Bureaucrat	c(a);

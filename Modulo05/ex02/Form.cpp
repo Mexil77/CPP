@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/04 13:45:17 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/05/05 11:55:57 by emgarcia         ###   ########.fr       */
+/*   Created: 2022/05/05 11:55:00 by emgarcia          #+#    #+#             */
+/*   Updated: 2022/05/05 14:07:37 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ bool Form::isSigned(void) const {return (this->_signed);}
 int	Form::getGradeSign(void) const {return (this->_gradeToSign);}
 
 int	Form::getGradeExecute(void) const {return (this->_gradeToExecute);}
+
+void	Form::setSigned(bool sign) {this->_signed = sign;}
 
 void	Form::beSigned(Bureaucrat &bur)
 {

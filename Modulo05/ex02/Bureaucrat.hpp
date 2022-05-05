@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/03 13:21:13 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/05/05 13:34:41 by emgarcia         ###   ########.fr       */
+/*   Created: 2022/05/05 11:55:04 by emgarcia          #+#    #+#             */
+/*   Updated: 2022/05/05 11:56:19 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include <string>
 # include <exception>
 # include <iostream>
+# include "Form.hpp"
+
+class Form;
 
 class Bureaucrat
 {
@@ -31,13 +34,14 @@ class Bureaucrat
 		int			getGrade(void);
 		void		incrementGrade(void);
 		void		decrementGrade(void);
+		void		signForm(Form &form);
 
 		class GradeTooHighException: public std::exception
 		{
 			public:
 				virtual const char* what() const throw()
 				{
-					return ("The grade is to High.");
+					return ("The Bureaucrat grade is to High.");
 				}
 		};
 		class GradeTooLowException: public std::exception
@@ -45,7 +49,7 @@ class Bureaucrat
 			public:
 				virtual const char* what() const throw()
 				{
-					return ("The grade is to Low.");
+					return ("The Bureaucrat grade is to Low.");
 				}
 		};
 		

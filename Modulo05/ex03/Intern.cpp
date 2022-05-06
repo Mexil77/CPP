@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 13:43:35 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/05/06 16:04:16 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/05/06 16:09:32 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,32 +39,29 @@ Form*	Intern::makeShrubberyForm(std::string targetForm)
 {
 	ShrubberyCreationForm	*shu = new ShrubberyCreationForm(targetForm);
 	std::cout << "Intern creates ShrubberyCreationForm." << std::endl;
-	return (*shu);
+	return (shu);
 }
 
 Form*	Intern::makeRobotomyForm(std::string targetForm)
 {
 	RobotomyRequestForm	*rob = new RobotomyRequestForm(targetForm);
 	std::cout << "Intern creates RobotomyRequestForm." << std::endl;
-	return (*rob);
+	return (rob);
 }
 
 Form*	Intern::makePresidentiaPardonForm(std::string targetForm)
 {
 	PresidentialPardonForm	*pres = new PresidentialPardonForm(targetForm);
 	std::cout << "Intern creates PresidentialPardonForm." << std::endl;
-	return (*pres);
+	return (pres);
 }
 
 Form*	Intern::makeForm(std::string nameForm, std::string targetForm)
 {
 	std::string	options[] = {"shrubbery creation", "robotomy request", "presidential pardon"};
-	Form& (Intern::*arrPtr[])(std::string targetForm) = {&Intern::makeShrubberyForm, &Intern::makeRobotomyForm, &Intern::makePresidentiaPardonForm};
+	Form* (Intern::*arrPtr[])(std::string targetForm) = {&Intern::makeShrubberyForm, &Intern::makeRobotomyForm, &Intern::makePresidentiaPardonForm};
 	int i = -1;
 
-	std::cout << std::endl;
-	std::cout << "Llegue" << std::endl;
-	std::cout << std::endl;
 	while (i++ < 3)
 		if (options[i] == nameForm)
 			return ((this->*arrPtr[i])(targetForm));

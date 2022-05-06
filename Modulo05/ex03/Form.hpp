@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 13:29:36 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/05/06 13:34:08 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/05/06 16:11:04 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class Form
 		Form(void);
 		Form(const Form &obj);
 		Form(std::string name, int gradeToSign, int gradeToExecute);
-		~Form();
+		virtual ~Form();
 
 		Form&	operator = (const Form &form);
 

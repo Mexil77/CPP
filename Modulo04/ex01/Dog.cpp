@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:57:13 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/03/15 17:40:04 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/05/09 16:32:07 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Dog::Dog(void)
 Dog::Dog(const Dog &obj) : Animal()
 {
 	this->_type = obj._type;
-	this->dogBrain = obj.dogBrain;
+	this->dogBrain = new Brain();
 	std::cout << "A dog has been created with copy constructor." << std::endl;
 }
 
@@ -35,7 +35,7 @@ Dog::~Dog()
 Dog&	Dog::operator=(const Dog &dog)
 {
 	this->_type = dog._type;
-	this->dogBrain = dog.dogBrain;
+	this->dogBrain = new Brain();
 	return (*this);
 }
 

@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 13:55:31 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/03/16 16:39:20 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/05/09 16:35:18 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Cat::Cat(void)
 Cat::Cat(const Cat &obj)
 {
 	this->_type = obj._type;
-	this->catBrain = obj.catBrain;
+	this->catBrain = new Brain();
 	std::cout << "A cat has been created with copy constructor." << std::endl;
 }
 
@@ -35,7 +35,7 @@ Cat::~Cat()
 Cat&	Cat::operator=(const Cat &cat)
 {
 	this->_type = cat._type;
-	this->catBrain = cat.catBrain;
+	this->catBrain = new Brain();
 	return (*this);
 }
 

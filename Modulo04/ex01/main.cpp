@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:55:13 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/03/16 13:51:58 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/05/09 16:33:53 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,22 @@
 int	main(void)
 {
 	{
-		const Animal* i = new Cat();
-		const Animal* j = new Dog();
+		const Animal*	i = new Cat();
+		const Animal*	j = new Dog();
+		const Cat*		a = new Cat();
+		const Cat*		b = new Cat(*a);
+		const Dog*		c = new Dog();
+		const Dog*		d = new Dog(*c);
+		std::cout << std::endl;
 		// i->showIdeas();
 		// j->showIdeas();
 		delete i;
 		delete j;
+		delete a;
+		delete b;
+		delete c;
+		delete d;
 		system("leaks brain");
-		std::cout << std::endl;
 	}
 	{
 		size_t	i;

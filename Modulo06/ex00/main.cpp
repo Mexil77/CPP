@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 13:32:23 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/05/13 17:23:47 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/05/18 13:32:14 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,46 +15,75 @@
 #include <iostream>
 #include <math.h>
 
-int main(int argc, char const *argv[])
+void	displayChar(double number)
 {
 	char	numChar;
+
+	numChar = number;
+	if (number >= 32 && number <= 126)
+		std::cout << "Char: '" << numChar << "'" << std::endl;
+	else if (number != numChar)
+		std::cout << "Char: imposible" << std::endl;
+	else	
+		std::cout << "Char: Non displayable" << std::endl;
+}
+
+void	displayInt(double number)
+{
 	int		numInt;
+
+	numInt = number;
+	if (number != numInt)
+		std::cout << "Int: imposible" << std::endl;
+	else
+		std::cout << "Int: " << numInt << std::endl;
+}
+
+void	displayFloat(double number)
+{
 	float	numFloat;
-	double	numDouble;
+	
+	numFloat = number;
+	if (roundf(numFloat) != numFloat || number < -999999 || number > 999999)
+		std::cout << "Float: " << numFloat << "f" << std::endl;
+	else
+		std::cout << "Float: " << numFloat << ".0f" << std::endl;
+}
+
+void	displayDouble(double number)
+{
+	if (number < -999999 || number > 999999 || number != number)
+		std::cout << "Double: " << number << std::endl;
+	else
+		std::cout << "Double: " << number << ".0" << std::endl;
+}
+
+int main(int argc, char const *argv[])
+{
+	std::string	word;
+	double		numDouble;
 
 	if (argc != 2)
 	{
 		std::cout << "Wrong Number of arguments." << std::endl;
 		return (0);
 	}
+	word = argv[1];
 	try
 	{
-		numDouble = std::stod(argv[1]);
-		numFloat = numDouble;
-		numInt = numFloat;
-		numChar = numInt;
-		
+		if (word == "+inff")
+			numDouble = 1.0 / 0.0;
+		else if (word == "-inff")
+			numDouble = -1.0 / 0.0;
+		else if (word == "nanf")
+			numDouble = 0.0 / 0.0;
+		else
+			numDouble = std::stod(word);	
 		std::cout << std::endl;
-		if (numInt >= 32 && numInt <= 126)
-			std::cout << "Char: " << numChar << std::endl;
-		else
-			std::cout << "Char: Non displayable" << std::endl;
-		int tmp = numDouble;
-		std::cout << "tmp " << tmp << std::endl;
-		if (numDouble != (float)tmp)
-			std::cout << "Int: imposible" << std::endl;
-		else
-			std::cout << "Int: " << numInt << std::endl;
-		if (roundf(numFloat) != numFloat)
-		{
-			std::cout << "Float: " << numFloat << "f" << std::endl;
-			std::cout << "Double: " << numDouble << std::endl;
-		}
-		else
-		{
-			std::cout << "Float: " << numFloat << ".0f" << std::endl;
-			std::cout << "Double: " << numDouble << ".0" << std::endl;
-		}
+		displayChar(numDouble);
+		displayInt(numDouble);
+		displayFloat(numDouble);
+		displayDouble(numDouble);
 	}
 	catch(const std::exception& e)
 	{

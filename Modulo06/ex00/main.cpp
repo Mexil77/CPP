@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 13:32:23 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/05/18 13:32:14 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/05/18 17:00:19 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	displayChar(double number)
 {
 	char	numChar;
 
-	numChar = number;
+	numChar = static_cast<char>(number);
 	if (number >= 32 && number <= 126)
 		std::cout << "Char: '" << numChar << "'" << std::endl;
 	else if (number != numChar)
@@ -32,7 +32,7 @@ void	displayInt(double number)
 {
 	int		numInt;
 
-	numInt = number;
+	numInt = static_cast<int>(number);
 	if (number != numInt)
 		std::cout << "Int: imposible" << std::endl;
 	else
@@ -43,7 +43,7 @@ void	displayFloat(double number)
 {
 	float	numFloat;
 	
-	numFloat = number;
+	numFloat = static_cast<float>(number);
 	if (roundf(numFloat) != numFloat || number < -999999 || number > 999999)
 		std::cout << "Float: " << numFloat << "f" << std::endl;
 	else

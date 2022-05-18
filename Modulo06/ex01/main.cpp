@@ -6,35 +6,33 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 13:42:00 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/05/18 16:41:52 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/05/18 18:57:40 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.hpp"
 
-class Int
+struct Data
 {
-	int x;
-
-	public:
-    Int(int x_in = 0) : x(x_in)
-    {
-		std::cout << "Conversion Ctor called" << std::endl;
-    }
-    operator std::string()
-    {
-		std::cout << "Conversion Operator" << std::endl;
-		return std::to_string(x);
-    }
+	uintptr_t	ptr;
 };
+
 
 int main(void)
 {
-	Int obj(3);
-	std::string str = obj;
-	std::cout << "str: " << str << std::endl;
-	obj = 20;
-	std::string str2 = static_cast<std::string>(obj);
-	obj = static_cast<Int>(30);
+	Data*		ptr = new Data();
+	uintptr_t*	pt;
+	// void*		A = new (39);
+	int*		B = new int(4);
+
+	pt = reinterpret_cast<uintptr_t *>(B);
+	std::cout << "B: " << B << std::endl;
+	std::cout << "*B: " << *B << std::endl;
+	std::cout << "pt: " << pt << std::endl;
+	std::cout << "*pt: " << *pt << std::endl;
+	std::cout << "ptr: " << ptr << std::endl;
+	std::cout << "*ptr: " << ptr->ptr << std::endl;
+	// delete pt;
+	delete B;
 	return 0;
 }

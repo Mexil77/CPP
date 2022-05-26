@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 17:12:57 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/05/25 18:36:55 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/05/26 13:28:41 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 # include <string>
 # include <iostream>
 
-template<typename I, typename F>
-void	iter(I *arr, int leng, F func)
+template<typename I>
+void	iter(I *arr, int leng, void (*printDouble)(int i, I const &a))
 {
 	int	i;
 
 	i = -1;
 	while (++i < leng)
-		func(i, arr[i]);
+		printDouble(i, arr[i]);
 }
 
 #endif

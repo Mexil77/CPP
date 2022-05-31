@@ -6,16 +6,16 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 17:13:03 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/05/26 13:28:23 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/05/31 14:33:38 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "iter.hpp"
 
 template<typename N>
-void	printDouble(int i, N a)
+void	printDouble(N a)
 {
-	std::cout << "arrI[" << i << "]: " << a << ", ";
+	std::cout << a << std::endl;
 }
 
 int main(void)

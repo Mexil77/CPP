@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:14:13 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/06/02 19:24:18 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/06/03 19:17:42 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,8 @@ Span::Span(const Span& obj) : _vInts(obj._vInts), _fill(obj._fill)
 	std::cout << "A Span of size " << _vInts.size() << " has been created as a copy." << std::endl;
 }
 
-// Span::Span(std::vector<int>::iterator b, std::vector<int>::iterator e): _vInts(std::vector<int> (b, e))
-Span::Span(std::vector<int>::iterator b, std::vector<int>::iterator e)
+Span::Span(std::vector<int>::iterator b, std::vector<int>::iterator e): _vInts(std::vector<int> (b, e)), _fill(_vInts.size())
 {
-	for (std::vector<int>::iterator it = b; it != e; it++)
-		std::cout << "Span.it: " << *it << std::endl;
-	_vInts = std::vector<int> (b, e);
-	_fill = _vInts.size();
 	std::cout << "A Span of size " << _vInts.size() << " has been created as a iterator range." << std::endl;
 }
 
@@ -50,26 +45,64 @@ Span&	Span::operator = (const Span& sp)
 	return (*this);
 }
 
-std::vector<int>	Span::getList(void) {return (_vInts);}
+std::vector<int>&	Span::getList(void) {return (_vInts);}
+
 size_t	Span::getFill(void) {return (_fill);}
 
 void	Span::addNumber(int n)
 {
-	if (!_vInts.empty())
+	if (_vInts.empty() || _fill >= _vInts.size())
+		throw Span::InvalidAddException();	
+	size_t	i = 0;
+	for (std::vector<int>::iterator it = _vInts.begin(); it != _vInts.end(); it++, i++)
 	{
-		size_t	i = 0;
-		for (std::vector<int>::iterator it = _vInts.begin(); it != _vInts.end(); it++, i++)
+		if (i == _fill)
 		{
-			if (i == this->_fill)
-			{
-				*it = n;
-				this->_fill++;
-				return ;
-			}
+			*it = n;
+			_fill++;
+			return ;
 		}
 	}
-	throw Span::InvalidAddException();
-	
+}
+
+void	Span::addNumber(std::vector<int>::iterator b, std::vector<int>::iterator e)
+{
+	if (_vInts.empty() || _fill >= _vInts.size())
+		throw Span::InvalidAddException();	
+	size_t	i = 0;
+	for (std::vector<int>::iterator it = _vInts.begin(); it != _vInts.end() && b != e; it++, i++)
+	{
+		if (i == _fill)
+		{
+			*it = *b;
+			b++;
+			_fill++;
+		}
+	}
+	if (b != e)
+		throw Span::InvalidAddException();
+}
+
+int	Span::shortestSpan(void)
+{
+	int	shortes = INT32_MAX;
+
+	for (std::vector<int>::iterator it = _vInts.begin(); it != _vInts.end(); it++)
+		for (std::vector<int>::iterator jt = _vInts.begin(); jt < _vInts.end(); jt++)
+			if (jt != it && abs(*jt - *it) < shortes)
+				shortes = abs(*jt - *it);
+	return (shortes);
+}
+
+int	Span::longestSpan(void)
+{
+	int	shortes = 0;
+
+	for (std::vector<int>::iterator it = _vInts.begin(); it != _vInts.end(); it++)
+		for (std::vector<int>::iterator jt = _vInts.begin(); jt < _vInts.end(); jt++)
+			if (jt != it && abs(*jt - *it) > shortes)
+				shortes = abs(*jt - *it);
+	return (shortes);
 }
 
 std::ostream&	operator << (std::ostream& o, Span &sp)

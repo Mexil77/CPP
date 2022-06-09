@@ -6,19 +6,21 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 12:49:01 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/06/07 21:09:33 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/06/09 11:35:42 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MUTANT_STACK_HPP
-#define MUTANT_STACK_HPP
+# define MUTANT_STACK_HPP
 
-#include <stack>
-#include <deque>
+# include <string>
+# include <iostream>
+# include <stack>
+# include <deque>
 
 
 template <typename T>
-class mutantstack : public std::stack<T>
+class MutantStack : public std::stack<T>
 {
 	public:
 		typedef typename std::stack<T>::container_type::iterator iterator;
@@ -26,17 +28,17 @@ class mutantstack : public std::stack<T>
 		typedef typename std::stack<T>::container_type::reverse_iterator reverse_iterator;
 		typedef typename std::stack<T>::container_type::const_reverse_iterator const_reverse_iterator;
 
-		mutantstack() : std::stack<T>(){};
-		mutantstack( const mutantstack<T> & other ) : std::stack<T>(other) {};
-virtual	~mutantstack(){};
+		MutantStack() : std::stack<T>(){};
+		MutantStack( const MutantStack<T> & other ) : std::stack<T>(other) {};
+		virtual	~MutantStack(){};
 
-	mutantstack & operator=( const mutantstack<T> & other )
-	{
-		if ( *this == &other)
+		MutantStack & operator=( const MutantStack<T> & other )
+		{
+			if ( *this == &other)
+				return *this;
+			std::stack<T>::operator=(other);
 			return *this;
-		std::stack<T>::operator=(other);
-		return *this;
-	};
+		}
 
 	iterator	begin()
 	{

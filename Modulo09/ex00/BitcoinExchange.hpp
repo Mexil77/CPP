@@ -12,6 +12,8 @@ class BitcoinExchange
 		BitcoinExchange(const BitcoinExchange &obj);
 		virtual ~BitcoinExchange();
 		std::map<std::string, std::string> dataMap;
+		void printMap(void);
+		void fillMap(std::string nameDbFile);
 	private:
 };
 

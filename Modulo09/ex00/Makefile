@@ -4,10 +4,10 @@ CXX			=	clang++
 RM			=	rm -rf
 
 SRCS		=	main.cpp BitcoinExchange.cpp
-# SRCS		=	main.cpp
+
 OBJS		=	${SRCS:.cpp=.o}
 
-CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98
+CXXFLAGS	=	-std=c++98 -Wall -Werror -Wextra
 
 all: ${NAME}
 

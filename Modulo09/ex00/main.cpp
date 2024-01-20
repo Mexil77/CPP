@@ -1,49 +1,67 @@
 #include "BitcoinExchange.hpp"
 #include <fstream>
-#include <bits/stdc++.h>
+#include <regex>
 
-void	printMap(std::map<std::string, std::string> m){
-
-	std::cout << "{" << std::endl;
-	std::map<std::string, std::string>::iterator iter;
-	for (iter = m.begin(); iter != m.end(); iter++)
-	{
-		std::cout	<< iter->first << ':' << iter->second << "," << std::endl;
-	}
-	std::cout << "}" << std::endl;
-}
-
-void	fillMap(std::map<std::string, std::string> &m, std::fstream *fdin) {
-	std::string	cadena;
-	std::string	str;
-	int					i;
-
-	while (!fdin->eof())
-	{
-		*fdin >> cadena;
-		std::stringstream	ss(cadena);
-		std::string				key;
-		std::string				value;
-		i = 0;
-		while (getline(ss, str, ','))
-			i++ % 2 == 0 ? key = str : value = str;
-		m[key] = value;
-	}
-}
-
-int	main(void)
+bool	validateLineInput(std::string lineInput)
 {
-	std::fstream		fdin;
-	BitcoinExchange	bitExch;
-
-	fdin.open("data.csv", std::fstream::in);
-	if (!fdin)
+	std::regex pat("[0-9]{4}$\\/[0-9]{1,2}\\/^[0-9]{1,2}");
+	std::string	date;
+	std::string	value;
+	if (lineInput.find('|') == lineInput.npos)
 	{
-		std::cout << "Error de lectura" << std::endl;
+		return false;
+	}
+	date = lineInput.substr(0, lineInput.find('|'));
+	value = lineInput.substr(lineInput.find('|') + 1, lineInput.length());
+	if (date.length() == 0 || value.length() == 0)
+	{
+		return false;
+	}
+	date.erase(std::remove_if(date.begin(), date.end(), ::isspace), date.end());
+	value.erase(std::remove_if(value.begin(), value.end(), ::isspace), value.end());
+	if (std::regex_match(date, pat))
+	{
+		std::cout << date << std::endl;
+	}
+	std::cout << value << std::endl;
+	return true;
+}
+
+void	printResults(std::string inputFileName, std::map<std::string, std::string> &m)
+{
+	std::string		lineInput;
+	std::ifstream	fdInput;
+
+	(void)m;
+	fdInput.open(inputFileName);
+	if (!fdInput.is_open())
+	{
+		std::cout << "Error: could not open file." << std::endl;
+		exit(0);
+	}
+	std::getline(fdInput, lineInput);
+	while (std::getline(fdInput, lineInput))
+	{
+		if (validateLineInput(lineInput))
+		{
+		}
+	}
+}
+
+int	main(int argc, char **argv)
+{
+	std::ifstream		fdInput;
+	BitcoinExchange		bitExch;
+
+	if (argc != 2)
+	{
+		std::cout << "Error: could not open file." << std::endl;
 		return(0);
 	}
-	fillMap(bitExch.dataMap, &fdin);
-	fdin.close();
-	printMap(bitExch.dataMap);
+	// fdInput.open(argv[1]);
+	bitExch.fillMap("data.csv");
+	printResults(argv[1], bitExch.dataMap);
+	// bitExch.printMap();
+	fdInput.close();
 	return 0;
 }

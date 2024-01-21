@@ -8,13 +8,15 @@
 class BitcoinExchange
 {
 	public:
-		BitcoinExchange(void);
 		BitcoinExchange(const BitcoinExchange &obj);
-		virtual ~BitcoinExchange();
-		std::map<std::string, std::string> dataMap;
+		BitcoinExchange(std::string nameDbFile);
+		~BitcoinExchange(void);
 		void printMap(void);
 		void fillMap(std::string nameDbFile);
+		double getValueByDate(std::string date);
 	private:
+		BitcoinExchange(void);
+		std::map<std::string, double> dataMap;
 };
 
 #endif

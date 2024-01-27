@@ -1,21 +1,84 @@
 #include "BitcoinExchange.hpp"
 #include <fstream>
-#include <regex>
 
-bool isNumber(std::string s)
+bool	isFloatPositive(std::string stringNumber)
 {
-	const std::regex pattern("[+-]?([0-9]*[.])?[0-9]+");
-	if (std::regex_match(s, pattern))
-		return true;
-	return false;
+	int		i = 0;
+	bool	point = false;
+
+	while (i < (int) stringNumber.length())
+	{
+		if (stringNumber[i] == '.' && point){
+			if (point)
+				return false;
+			else
+				point = true;
+		}
+		if (!std::isdigit(stringNumber[i]) && stringNumber[i] != '.')
+			return false;
+		i++;
+	}
+	return true;
 }
 
-bool isDate(std::string s)
+bool	isIntPositive(std::string stringNumber)
 {
-	const std::regex pattern("^([0-9]{4})-((01|02|03|04|05|06|07|08|09|10|11|12|))-([0-3][0-9])$");
-	if (std::regex_match(s, pattern))
-		return true;
-	return false;
+	int	i = 0;
+
+	while (i < (int) stringNumber.length())
+	{
+		if (!std::isdigit(stringNumber[i]))
+			return false;
+		i++;
+	}
+	return true;
+}
+
+bool	validateDatePosition(int dateNumber, int datePosition){
+	switch (datePosition)
+	{
+	case 0:
+		if (dateNumber > 0)
+			return	true;
+		else
+			return	false;
+		break;
+	case 1:
+		if (dateNumber > 0 && dateNumber < 13)
+			return	true;
+		else
+			return	false;
+		break;
+	case 2:
+		if (dateNumber > 0 && dateNumber < 32)
+			return	true;
+		else
+			return	false;
+		break;
+	
+	default:
+		return	false;
+		break;
+	}
+}
+
+bool	isDate(std::string s)
+{
+	std::string			delimiter = "-";
+	size_t				pos = 0;
+	int					datePosition = 0;
+	std::string			token;
+
+	while ((pos = s.find(delimiter)) != std::string::npos) {
+	    token = s.substr(0, pos);
+		if (!isIntPositive(token) || !validateDatePosition(atoi(&token[0]), datePosition))
+			return false;
+		datePosition++;
+	    s.erase(0, pos + delimiter.length());
+	}
+	if (!isIntPositive(s) || !validateDatePosition(atoi(&s[0]), datePosition))
+		return false;
+	return	true;
 }
 
 bool	printError(std::string error){
@@ -41,7 +104,7 @@ bool	validateLineInput(std::string lineInput)
 	value.erase(std::remove_if(value.begin(), value.end(), ::isspace), value.end());
 	if (!isDate(date))
 		return printError("Error: bad input => " + lineInput);
-	if (!isNumber(value))
+	if (!isFloatPositive(value))
 		return printError("Error: bad input => " + lineInput);
 	floatValue = atof(&value[0]);
 	if (floatValue < 0)

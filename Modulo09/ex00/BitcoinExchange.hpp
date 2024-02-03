@@ -11,9 +11,10 @@ class BitcoinExchange
 		BitcoinExchange(const BitcoinExchange &obj);
 		BitcoinExchange(std::string nameDbFile);
 		~BitcoinExchange(void);
-		void printMap(void);
-		void fillMap(std::string nameDbFile);
-		double getValueByDate(std::string date);
+		void	printMap(void);
+		void	fillMap(std::string nameDbFile);
+		double	getValueByDate(std::string date);
+		void	printResults(std::string inputFileName);
 	private:
 		BitcoinExchange(void);
 		std::map<std::string, double> dataMap;

@@ -27,6 +27,8 @@ class Pmerge
 		void		doFordJohnson();
 		void		fillVector();
 		void		fillDeque();
+		void		fillContainers(std::string argv[], int argc);
+		// void		fillVectorAux(std::string argv[], int argc);
 
 		void		sortVector();
 		void		sortDeque();
@@ -48,10 +50,9 @@ class Pmerge
     private:
 		std::deque<int>						_deque;
 		std::vector<int>					_vect;
-		std::deque<std::pair<int, int> >	_aux_deque;
-		std::vector<std::pair<int, int> >	_aux_vect;
+		std::deque<std::pair<int, int> >	_pairDeque;
+		std::vector<std::pair<int, int> >	_pairVect;
 		std::list<int>						_list;
-		int									list;
 
 		struct timeval						_start_deque;
 		struct timeval						_start_vect;

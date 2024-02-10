@@ -24,40 +24,41 @@ class Pmerge
 
 		Pmerge operator=(const Pmerge& other);
 
-		void do_ford_johnson();
-		void fill_vector();
-		void fill_deque();
+		void		doFordJohnson();
+		void		fillVector();
+		void		fillDeque();
 
-		void sort_vector();
-		void sort_deque();
+		void		sortVector();
+		void		sortDeque();
 
-		void print_before();
-		void print_after();
-		std::string get_time_lapsed(timeval& start, timeval& end);
+		void		printBefore();
+		void		printAfter();
+		std::string	getTimeLapsed(timeval& start, timeval& end);
 
-		void sort_pairs_vector(size_t size);
-		void sort_pairs_deque(size_t size);
+		void		sortPairsVector(size_t size);
+		void		sortPairsDeque(size_t size);
 
-		void merge_pairs_vector();
-		void merge_pairs_jacobsthal_vector();
-		void merge_pairs_deque();
-		void merge_pairs_jacobsthal_deque();
+		void		mergePairsVector();
+		void		mergePairsJacobsthalVector();
+		void		mergePairsDeque();
+		void		mergePairsJacobsthalDeque();
 
-		size_t binary_insertion_recursive_vector(int value, ssize_t right, ssize_t left);
-		size_t binary_insertion_recursive_deque(int value, ssize_t right, ssize_t left);
+		size_t	binaryInsertionRecursiveVector(int value, ssize_t right, ssize_t left);
+		size_t	binaryInsertionRecursiveDeque(int value, ssize_t right, ssize_t left);
     private:
-		std::deque<int> _deque;
-		std::vector<int> _vect;
-		std::deque<std::pair<int, int> > _aux_deque;
-		std::vector<std::pair<int, int> > _aux_vect;
-		std::list<int> _list;
+		std::deque<int>						_deque;
+		std::vector<int>					_vect;
+		std::deque<std::pair<int, int> >	_aux_deque;
+		std::vector<std::pair<int, int> >	_aux_vect;
+		std::list<int>						_list;
+		int									list;
 
-		struct timeval _start_deque;
-		struct timeval _start_vect;
-		struct timeval _time_deque;
-		struct timeval _time_vect;
-		int _odd_deque;
-		int _odd_vect;
+		struct timeval						_start_deque;
+		struct timeval						_start_vect;
+		struct timeval						_time_deque;
+		struct timeval						_time_vect;
+		int									_odd_deque;
+		int									_odd_vect;
 		
 		Pmerge();
 };

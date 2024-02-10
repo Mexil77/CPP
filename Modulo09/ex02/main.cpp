@@ -16,7 +16,7 @@ int main(int argc, char **argv)
 
 	Pmerge sort(argc, numberArgs);
 	try {
-		sort.do_ford_johnson();
+		sort.doFordJohnson();
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}

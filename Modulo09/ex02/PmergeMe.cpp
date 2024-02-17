@@ -12,57 +12,26 @@ Pmerge Pmerge::operator=(const Pmerge& other)
 		return *this;
 	this->_deque = other._deque;
 	this->_vect = other._vect;
-	this->_list = other._list;
 	return *this;
 }
 
-template <typename T>
-void	print_nums(std::string str, T& container, int odd)
-{
-	typename T::iterator iter;
-
-	std::cout << str;
-	for (iter = container.begin(); iter != container.end(); ++iter)
-		std::cout << " " << *iter;
-	if (odd != -1)
-		std::cout << " " << odd;
-	std::cout << std::endl;
+// AuxFunctions
+void	printPair(std::pair<int, int> pairToPrint){
+	std::cout << "pairToPrint: [ " << pairToPrint.first << ", " << pairToPrint.second << " ]" << std::endl;
 }
 
-template<typename T>
-void	print_pairs(std::string str, T& container, int odd)
-{
-	typename T::iterator iter;
-	std::cout << str << " ";
-	for  (iter = container.begin(); iter != container.end(); iter++)
-		std::cout << " | " << (*iter).first << " " << (*iter).second;
-	if (odd != -1)
-		std::cout <<  " | " << odd;
-	std::cout << std::endl;
+void	Pmerge::printAllPairsVector(){
+	for (int i = 0; i < (int)this->_pairVect.size(); i++)
+		printPair(this->_pairVect[i]);
 }
 
-// OLD
-// void	isOK(std::string argv[], int argc, std::list<int> &l)
-// {
-// 	std::stringstream str;
-// 	float num;
+void	swapPairContentVector(std::pair<int,int> &pairToSwap) {
+	int auxNumber = pairToSwap.first;
+	pairToSwap.first = pairToSwap.second;
+	pairToSwap.second = auxNumber;
+}
 
-// 	for (int i = 0; i < argc; i++) {
-// 		str << argv[i];
-		
-// 		str >> num;
-// 		if (str.fail() || num < 0) {
-// 			l.clear();
-// 			throw std::runtime_error("ERROR: Invalid arguments");
-// 		}
-// 		else {
-// 			str.clear();
-// 			l.push_back(num);
-// 		}
-// 	}
-// }
-
-void	isOKAux(std::string argv[], int argc)
+void	isOK(std::string argv[], int argc)
 {
 	std::stringstream str;
 	float num;
@@ -87,22 +56,18 @@ void	Pmerge::fillContainers(std::string argv[], int argc) {
 		str.clear();
 		this->_vect.push_back(num);
 		this->_deque.push_back(num);
-		if (i % 2 == 0 && i > 0){
+		if (i % 2 != 0 && i > 0){
 			this->_pairVect.push_back(std::pair<int, int>(_vect[i - 1], _vect[i]));
 			this->_pairDeque.push_back(std::pair<int, int>(_vect[i - 1], _vect[i]));
 		}
-	}	
+	}
+	// this->printAllPairsVector();
 }
-	// for (int i = 0; i < (int)this->_vect.size(); i++)
-	// 	std::cout << "vect[" << i << "]: " << this->_vect[i] << std::endl;
-	// for (int i = 0; i < (int)this->_deque.size(); i++)
-	// 	std::cout << "deque[" << i << "]: " << this->_deque[i] << std::endl;
 
 Pmerge::Pmerge(int argc, std::string argv[])
 {
 	try {
-		// isOK(argv, argc - 1, this->_list);
-		isOKAux(argv, argc - 1);
+		isOK(argv, argc - 1);
 	} catch (std::runtime_error &e) {
 		std::cout << e.what() << std::endl;
 		exit (1);
@@ -110,67 +75,36 @@ Pmerge::Pmerge(int argc, std::string argv[])
 	this->fillContainers(argv, argc - 1);
 	this->_odd_deque = -1;
 	this->_odd_vect = -1;
-	if (_list.size() % 2 != 0)
+	if (this->_vect.size() % 2 != 0)
 	{
-		this->_odd_vect = _list.back();
-		this->_odd_deque = _list.back();
-		_list.pop_back();
+		this->_odd_vect = this->_vect.back();
+		// this->_odd_deque = _list.back();
 	}
 	gettimeofday(&_start_vect, NULL);
 	gettimeofday(&_start_deque, NULL);
 }
 
-// fill vector with numbers and _aux versión with pairs
-// pairs are automatically saved with in order within the pair
-void	Pmerge::fillVector()
-{
-	for (std::list<int>::iterator iter = _list.begin(); iter != _list.end(); iter++)
-	{
-		int value_aux = *iter;
-		std::advance(iter, 1);
-		std::pair<int, int> aux(value_aux, *iter);
-
-		_vect.push_back(value_aux);
-		_vect.push_back(*iter);
-
-		if (aux.first < aux.second)
-			std::swap(aux.first, aux.second);
-		_pairVect.push_back(aux);
-	}
+void	Pmerge::swapPairInVector(int idx) {
+	std::pair<int, int> auxPair = this->_pairVect[idx];
+	this->_pairVect[idx] = this->_pairVect[idx - 1];
+	this->_pairVect[idx - 1] = auxPair;
 }
 
-void	Pmerge::fillDeque()
+void	Pmerge::sortEachPairsVector()
 {
-	for (std::list<int>::iterator iter = _list.begin(); iter != _list.end(); iter++)
-	{
-		int value_aux = *iter;
-		std::advance(iter, 1);
-		std::pair<int, int> aux(value_aux, *iter);
-
-		_deque.push_back(value_aux);
-		_deque.push_back(*iter);
-
-		if (aux.first < aux.second)
-			std::swap(aux.first, aux.second);
-		_pairDeque.push_back(aux);
-	}
+	for (int i = 0; i < (int)this->_pairVect.size(); i++)
+		if (this->_pairVect[i].first > this->_pairVect[i].second)
+			swapPairContentVector(this->_pairVect[i]);
 }
 
-// recursive function to swap pairs and sort by first element
-void	Pmerge::sortPairsVector(size_t size)
+void	Pmerge::sortPairsVector()
 {
-	if (size <= 1)
-		return ;
-	sortPairsVector(size - 1);
-
-	std::pair<int, int> final = _pairVect[size - 1];
-	int index = size - 2;
-	while  (index >= 0 && _pairVect[index].first > final.first)
-	{
-		_pairVect[index + 1] = _pairVect[index];
-		index--;
-	}
-	_pairVect[index + 1] = final;
+	int i = 1;
+	int j;
+	while (i < (int)this->_pairVect.size() && (j = i++))
+		while (j > 0 && this->_pairVect[j - 1].second > this->_pairVect[j].second)
+			swapPairInVector(j--);
+	// this->printAllPairsVector();
 }
 
 void	Pmerge::sortPairsDeque(size_t size)
@@ -352,18 +286,16 @@ std::string	Pmerge::getTimeLapsed(timeval& start, timeval& end)
 
 void	Pmerge::printBefore()
 {
-	std::cout << "Before: ";
-	for (std::list<int>::iterator iter = _list.begin(); iter != _list.end(); iter++)
-		std::cout << *iter << " ";
-	if (_odd_deque != -1)
-		std::cout << _odd_vect;
+	std::cout << "Before:	";
+	for (int i = 0; i < (int)this->_vect.size(); i++)
+		std::cout << this->_vect[i] << " ";
 	std::cout << std::endl;
 }
 
 void	Pmerge::printAfter()
 {
-	std::cout << "After: ";
-	for (std::vector<int>::iterator iter = _vect.begin(); iter != _vect.end(); iter++)
+	std::cout << "After:	";
+	for (std::vector<int>::iterator iter = this->_vect.begin(); iter != this->_vect.end(); iter++)
 		std::cout << *iter << " ";
 	std::cout  << std::endl;
 	std::cout <<  "Time to sort a range of " << _deque.size() << " elements with std::deque: "
@@ -375,7 +307,6 @@ void	Pmerge::printAfter()
 
 void	Pmerge::sortDeque()
 {	
-	// fillDeque();
 	sortPairsDeque(_pairDeque.size());
 	_deque.clear();
 
@@ -396,8 +327,8 @@ void	Pmerge::sortDeque()
 
 void	Pmerge::sortVector()
 {
-	// fillVector();
-	sortPairsVector(_pairVect.size());
+	sortEachPairsVector();
+	sortPairsVector();
 	_vect.clear();
 
 	if (_pairVect.size() > 2)
@@ -418,11 +349,10 @@ void	Pmerge::sortVector()
 void	Pmerge::doFordJohnson()
 {
 	printBefore();
-	if (_list.size() < 2)
+	if (_vect.size() < 2)
 		throw std::runtime_error("Nothing to sort");
 	sortVector();
 	sortDeque();
 	
 	printAfter();
-	_list.clear();
 }

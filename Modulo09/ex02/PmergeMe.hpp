@@ -24,11 +24,10 @@ class Pmerge
 
 		Pmerge operator=(const Pmerge& other);
 
+		void		printAllPairsVector();
+
 		void		doFordJohnson();
-		void		fillVector();
-		void		fillDeque();
 		void		fillContainers(std::string argv[], int argc);
-		// void		fillVectorAux(std::string argv[], int argc);
 
 		void		sortVector();
 		void		sortDeque();
@@ -37,7 +36,9 @@ class Pmerge
 		void		printAfter();
 		std::string	getTimeLapsed(timeval& start, timeval& end);
 
-		void		sortPairsVector(size_t size);
+		void		sortEachPairsVector();
+		void		sortPairsVector();
+		void		swapPairInVector(int idx);
 		void		sortPairsDeque(size_t size);
 
 		void		mergePairsVector();
@@ -52,7 +53,6 @@ class Pmerge
 		std::vector<int>					_vect;
 		std::deque<std::pair<int, int> >	_pairDeque;
 		std::vector<std::pair<int, int> >	_pairVect;
-		std::list<int>						_list;
 
 		struct timeval						_start_deque;
 		struct timeval						_start_vect;

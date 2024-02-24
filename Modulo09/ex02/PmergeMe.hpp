@@ -59,7 +59,6 @@ class Pmerge
 		struct timeval						_time_deque;
 		struct timeval						_time_vect;
 		int									_odd_deque;
-		int									_odd_vect;
 		
 		Pmerge();
 };

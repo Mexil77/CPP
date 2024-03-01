@@ -157,16 +157,12 @@ size_t	Pmerge::binaryInsertionRecursiveDeque(int value, ssize_t left, ssize_t ri
 
 void	Pmerge::mergePairsVector()
 {
-	std::pair<int,int> first = _pairVect.front();
-	_vect.insert(_vect.begin(), first.first);
-	_vect.insert(_vect.begin(), first.second);
-	for (size_t i = 1; i < _pairVect.size(); i++)
+	if (this->_pairVect.size() == 1)
 	{
-		ssize_t pos_second = binaryInsertionRecursiveVector((_pairVect.begin() + i)->second, 0, _vect.size() - 1);
-		_vect.insert(_vect.begin() + pos_second, _pairVect[i].second);
-		ssize_t pos_first = binaryInsertionRecursiveVector((_pairVect.begin() + i)->first, 0, _vect.size() - 1);
-		_vect.insert(_vect.begin() + pos_first, _pairVect[i].first);
+		this->_vect.push_back(this->_pairVect[0].first);
+		this->_vect.push_back(this->_pairVect[0].second);
 	}
+	
 }
 
 void	Pmerge::mergePairsDeque()
@@ -227,7 +223,7 @@ std::vector<int>::iterator	findIterPosToInsert(std::vector<int> *vect, int iterV
 
 void	Pmerge::mergePairsJacobsthalVector()
 {
-	size_t				iterator = 0;
+	size_t				iterator = 1;
 	std::vector<int>	pend;
 	std::vector<int>	idxSequence;
 	std::vector<int>	jacobSecuence;
@@ -316,7 +312,7 @@ void	Pmerge::printBefore()
 {
 	std::cout << "Before:	";
 	for (int i = 0; i < (int)this->_vect.size(); i++)
-		std::cout << this->_vect[i] << " ";
+		std::cout << this->_vect[i] << "	";
 	std::cout << std::endl;
 }
 
@@ -324,7 +320,7 @@ void	Pmerge::printAfter()
 {
 	std::cout << "After:	";
 	for (std::vector<int>::iterator iter = this->_vect.begin(); iter != this->_vect.end(); iter++)
-		std::cout << *iter << " ";
+		std::cout << *iter << "	";
 	std::cout  << std::endl;
 	std::cout <<  "Time to sort a range of " << _deque.size() << " elements with std::deque: "
 		<< getTimeLapsed(_start_deque, _time_deque) << " us" << std::endl;
@@ -362,16 +358,13 @@ void	Pmerge::sortVector()
 		oddVector = _vect.back();
 	_vect.clear();
 
-	if (_pairVect.size() > 2)
+	if (_pairVect.size() >= 2)
 		mergePairsJacobsthalVector();
 	else 
 		mergePairsVector();
 
 	if (oddVector > -1)
-	{
-		std::vector<int>::iterator	iteratorPos = findIterPosToInsert(&this->_vect, oddVector);
-		this->_vect.insert(iteratorPos, oddVector);
-	}
+		this->_vect.insert(findIterPosToInsert(&this->_vect, oddVector), oddVector);
 	_pairVect.clear();
 	gettimeofday(&_time_vect, NULL);
 }

@@ -15,24 +15,7 @@ Pmerge Pmerge::operator=(const Pmerge& other)
 	return *this;
 }
 
-// AuxFunctions
-void	printPair(std::pair<int, int> pairToPrint){
-	std::cout << "pairToPrint: [ " << pairToPrint.first << ", " << pairToPrint.second << " ]" << std::endl;
-}
-
-void	printVector(std::vector<int> vect){
-	std::cout << "[ ";
-	for (std::vector<int>::iterator it = vect.begin(); it < vect.end(); it++)
-		std::cout << *it << ", ";
-	std::cout << "]" << std::endl;
-}
-
-void	Pmerge::printAllPairsVector(){
-	for (int i = 0; i < (int)this->_pairVect.size(); i++)
-		printPair(this->_pairVect[i]);
-}
-
-void	swapPairContentVector(std::pair<int,int> &pairToSwap) {
+void	swapPairContent(std::pair<int,int> &pairToSwap) {
 	int auxNumber = pairToSwap.first;
 	pairToSwap.first = pairToSwap.second;
 	pairToSwap.second = auxNumber;
@@ -65,7 +48,7 @@ void	Pmerge::fillContainers(std::string argv[], int argc) {
 		this->_deque.push_back(num);
 		if (i % 2 != 0 && i > 0){
 			this->_pairVect.push_back(std::pair<int, int>(_vect[i - 1], _vect[i]));
-			this->_pairDeque.push_back(std::pair<int, int>(_vect[i - 1], _vect[i]));
+			this->_pairDeque.push_back(std::pair<int, int>(_deque[i - 1], _deque[i]));
 		}
 	}
 }
@@ -81,7 +64,6 @@ Pmerge::Pmerge(int argc, std::string argv[])
 	gettimeofday(&_start_vect, NULL);
 	gettimeofday(&_start_deque, NULL);
 	this->fillContainers(argv, argc - 1);
-	this->_odd_deque = -1;
 }
 
 void	Pmerge::swapPairInVector(int idx) {
@@ -90,11 +72,24 @@ void	Pmerge::swapPairInVector(int idx) {
 	this->_pairVect[idx - 1] = auxPair;
 }
 
+void	Pmerge::swapPairInDeque(int idx) {
+	std::pair<int, int> auxPair = this->_pairDeque[idx];
+	this->_pairDeque[idx] = this->_pairDeque[idx - 1];
+	this->_pairDeque[idx - 1] = auxPair;
+}
+
 void	Pmerge::sortEachPairsVector()
 {
 	for (int i = 0; i < (int)this->_pairVect.size(); i++)
 		if (this->_pairVect[i].first > this->_pairVect[i].second)
-			swapPairContentVector(this->_pairVect[i]);
+			swapPairContent(this->_pairVect[i]);
+}
+
+void	Pmerge::sortEachPairsDeque()
+{
+	for (int i = 0; i < (int)this->_pairDeque.size(); i++)
+		if (this->_pairDeque[i].first > this->_pairDeque[i].second)
+			swapPairContent(this->_pairDeque[i]);
 }
 
 void	Pmerge::sortPairsVector()
@@ -106,60 +101,13 @@ void	Pmerge::sortPairsVector()
 			swapPairInVector(j--);
 }
 
-void	Pmerge::sortPairsDeque(size_t size)
+void	Pmerge::sortPairsDeque()
 {
-	if (size <= 1)
-		return ;
-	sortPairsDeque(size - 1);
-
-	std::pair<int, int> final = _pairDeque[size - 1];
-	int index = size - 2;
-	if  (index >= 0 && _pairDeque[index].first > final.first)
-	{
-		_pairDeque[index + 1] = _pairDeque[index];
-		index--;
-	}
-	_pairDeque[index + 1] = final;
-}
-
-size_t	Pmerge::binaryInsertionRecursiveDeque(int value, ssize_t left, ssize_t right)
-{
-	if (right <= left)
-	{
-		if (value > _deque[left])
-			return (left + 1);
-		return (left);
-	}
-	ssize_t middle = (left + right) / 2;
-	if (value == _deque[middle])
-		return (middle + 1);
-	if (value > _deque[middle])
-		return (binaryInsertionRecursiveDeque(value, middle + 1, right));
-	return (binaryInsertionRecursiveDeque(value, left, middle - 1));
-}
-
-void	Pmerge::mergePairsVector()
-{
-	if (this->_pairVect.size() == 1)
-	{
-		this->_vect.push_back(this->_pairVect[0].first);
-		this->_vect.push_back(this->_pairVect[0].second);
-	}
-	
-}
-
-void	Pmerge::mergePairsDeque()
-{
-	std::pair<int,int> first = _pairDeque.front();
-	_deque.insert(_deque.begin(), first.first);
-	_deque.insert(_deque.begin(), first.second);
-	for (size_t i = 1; i < _pairDeque.size(); i++)
-	{
-		ssize_t pos_second = binaryInsertionRecursiveDeque((_pairDeque.begin() + i)->second, 0, _deque.size() - 1);
-		_deque.insert(_deque.begin() + pos_second, _pairDeque[i].second);
-		ssize_t pos_first = binaryInsertionRecursiveDeque((_pairDeque.begin() + i)->first, 0, _deque.size() - 1);
-		_deque.insert(_deque.begin() + pos_first, _pairDeque[i].first);
-	}
+	int i = 1;
+	int j;
+	while (i < (int)this->_pairDeque.size() && (j = i++))
+		while (j > 0 && this->_pairDeque[j - 1].second > this->_pairDeque[j].second)
+			swapPairInDeque(j--);
 }
 
 size_t	getJacobsthalValue(size_t jacobsthalIdx)
@@ -183,9 +131,18 @@ int	jacobsthal(int n){
     return jacobsthal(n - 1) + 2 * jacobsthal(n - 2);
 }
 
-std::vector<int>	buildJacobSecuence(std::vector<int> arr){
+std::vector<int>	buildJacobSecuenceVector(std::vector<int> arr){
 	std::vector<int>	end_sequence;
 	int					jacob_index = 3;
+
+    while (jacobsthal(jacob_index) < (int)arr.size() - 1)
+        end_sequence.push_back(jacobsthal(jacob_index++));
+    return end_sequence;
+}
+
+std::deque<int>		buildJacobSecuenceDeque(std::deque<int> arr){
+	std::deque<int>	end_sequence;
+	int				jacob_index = 3;
 
     while (jacobsthal(jacob_index) < (int)arr.size() - 1)
         end_sequence.push_back(jacobsthal(jacob_index++));
@@ -198,7 +155,13 @@ bool	isInVector(std::vector<int> vect, int toFind){
 	return false;
 }
 
-std::vector<int>::iterator	findIterPosBinaryInsertion(std::vector<int> *vect, int iterValueToFind){
+bool	isInDeque(std::deque<int> vect, int toFind){
+	for (std::deque<int>::iterator iter = vect.begin(); iter < vect.end(); iter++)
+		if (*iter == toFind) return true;
+	return false;
+}
+
+std::vector<int>::iterator	findIterPosVectBinaryInsertion(std::vector<int> *vect, int iterValueToFind){
 	int	start = 0;
 	int	end = vect->size() - 1;
 	int	comp = 0;
@@ -223,10 +186,29 @@ std::vector<int>::iterator	findIterPosBinaryInsertion(std::vector<int> *vect, in
 	return vect->begin() + start;
 }
 
-std::vector<int>::iterator	findIterPosToInsert(std::vector<int> *vect, int iterValueToFind){
-	for (std::vector<int>::iterator it = vect->begin(); it < vect->end(); it++)
-		if (*it >= iterValueToFind) return it;
-	return vect->end();
+std::deque<int>::iterator	findIterPosDequeBinaryInsertion(std::deque<int> *deque, int iterValueToFind){
+	int	start = 0;
+	int	end = deque->size() - 1;
+	int	comp = 0;
+	std::deque<int>::iterator	iterPosition;
+
+	while (start <= end)
+	{
+		comp = (start + end) / 2;
+		if ((*deque)[comp] <= iterValueToFind)
+		{
+			if (comp < (int)deque->size() - 1 && (*deque)[comp + 1] > iterValueToFind)
+				return deque->begin() + comp + 1;
+			start = comp + 1;
+		}
+		else if ((*deque)[comp] > iterValueToFind)
+		{
+			if (comp > 0 && (*deque)[comp - 1] < iterValueToFind)
+				return deque->begin() + comp;
+			end = comp - 1;
+		}
+	}
+	return deque->begin() + start;
 }
 
 void	Pmerge::mergePairsJacobsthalVector()
@@ -244,7 +226,7 @@ void	Pmerge::mergePairsJacobsthalVector()
 	}
 	this->_vect.insert(this->_vect.begin(), pend[0]);
 	idxSequence.push_back(1);
-	jacobSecuence = buildJacobSecuence(pend);
+	jacobSecuence = buildJacobSecuenceVector(pend);
 	while (iterator <= pend.size())
 	{
 		if (jacobSecuence.size() != 0 && !isJacobianComp)
@@ -259,41 +241,45 @@ void	Pmerge::mergePairsJacobsthalVector()
 			idxSequence.push_back(iterator);
 			isJacobianComp = false;
 		}
-		// std::vector<int>::iterator	iteratorPos = findIterPosBinaryInsertion(&this->_vect, pendSelected);
 
-		this->_vect.insert(findIterPosBinaryInsertion(&this->_vect, pendSelected), pendSelected);
+		this->_vect.insert(findIterPosVectBinaryInsertion(&this->_vect, pendSelected), pendSelected);
 		iterator++;
 	}
 }
 
 void	Pmerge::mergePairsJacobsthalDeque()
 {
-	size_t j_index = 3;
-	size_t min = getJacobsthalValue(j_index - 1);
-	size_t index = getJacobsthalValue(j_index);
+	size_t			iterator = 1;
+	std::deque<int>	pend;
+	std::deque<int>	idxSequence;
+	std::deque<int>	jacobSecuence;
+	bool			isJacobianComp = false;
+	int				pendSelected;
 
-	_deque.insert(_deque.begin(),  _pairDeque.begin()->first);
-	_deque.insert(_deque.begin(),  _pairDeque.begin()->second);
-	while (1)
+	for (int i = 0; i < (int)this->_pairDeque.size(); i++){
+		this->_deque.push_back(this->_pairDeque[i].second);
+		pend.push_back(this->_pairDeque[i].first);
+	}
+	this->_deque.insert(this->_deque.begin(), pend[0]);
+	idxSequence.push_back(1);
+	jacobSecuence = buildJacobSecuenceDeque(pend);
+	while (iterator <= pend.size())
 	{
-		if (index > min)
+		if (jacobSecuence.size() != 0 && !isJacobianComp)
 		{
-			ssize_t pos_second = binaryInsertionRecursiveDeque(((_pairDeque.begin() + index))->second, 0, _deque.size() - 1);
-			_deque.insert(_deque.begin() + pos_second, _pairDeque[index].second);
-			ssize_t pos_first = binaryInsertionRecursiveDeque((_pairDeque.begin() + index)->first, 0, _deque.size() - 1);
-			_deque.insert(_deque.begin() + pos_first, _pairDeque[index].first);
-			index--;
+			idxSequence.push_back(jacobSecuence[0]);
+			pendSelected = pend[jacobSecuence[0] - 1];
+			jacobSecuence.erase(jacobSecuence.begin());
+			isJacobianComp = true;
+		}else {
+			if (isInDeque(idxSequence, iterator)) iterator++;
+			pendSelected = pend[iterator - 1];
+			idxSequence.push_back(iterator);
+			isJacobianComp = false;
 		}
-		else
-		{
-			min = getJacobsthalValue(j_index);
-			j_index++;
-			index = getJacobsthalValue(j_index);
-			if (min >= _pairDeque.size() - 1)
-				break ;
-			while (index > _pairDeque.size() - 1)
-				index--;
-		}
+
+		this->_deque.insert(findIterPosDequeBinaryInsertion(&this->_deque, pendSelected), pendSelected);
+		iterator++;
 	}
 }
 
@@ -336,25 +322,22 @@ void	Pmerge::printAfter()
 		<< getTimeLapsed(_start_vect, _time_vect) << " us" << std::endl;
 }
 
-
-void	Pmerge::sortDeque()
-{	
-	sortPairsDeque(_pairDeque.size());
-	_deque.clear();
-
-	if (_pairDeque.size() > 2)
-		mergePairsJacobsthalDeque();
-	else 
-		mergePairsDeque();
-
-	if (_odd_deque != -1)
+void	Pmerge::mergePairsVector()
+{
+	if (this->_pairVect.size() == 1)
 	{
-		size_t pos = binaryInsertionRecursiveDeque(_odd_deque, 0, _deque.size()  - 1);
-		_deque.insert(_deque.begin() + pos, _odd_deque);
-		_odd_deque = -1;
+		this->_vect.push_back(this->_pairVect[0].first);
+		this->_vect.push_back(this->_pairVect[0].second);
 	}
-	_pairDeque.clear();
-	gettimeofday(&_time_deque, NULL);
+}
+
+void	Pmerge::mergePairsDeque()
+{
+	if (this->_pairDeque.size() == 1)
+	{
+		this->_deque.push_back(this->_pairDeque[0].first);
+		this->_deque.push_back(this->_pairDeque[0].second);
+	}
 }
 
 void	Pmerge::sortVector()
@@ -372,9 +355,29 @@ void	Pmerge::sortVector()
 		mergePairsVector();
 
 	if (oddVector > -1)
-		this->_vect.insert(findIterPosBinaryInsertion(&this->_vect, oddVector), oddVector);
+		this->_vect.insert(findIterPosVectBinaryInsertion(&this->_vect, oddVector), oddVector);
 	_pairVect.clear();
 	gettimeofday(&_time_vect, NULL);
+}
+
+void	Pmerge::sortDeque()
+{
+	int		oddDeque = -1;
+	sortEachPairsDeque();
+	sortPairsDeque();
+	if (this->_deque.size() % 2 != 0)
+		oddDeque = _deque.back();
+	_deque.clear();
+
+	if (_pairDeque.size() >= 2)
+		mergePairsJacobsthalDeque();
+	else
+		mergePairsDeque();
+
+	if (oddDeque > -1)
+		this->_deque.insert(findIterPosDequeBinaryInsertion(&this->_deque, oddDeque), oddDeque);
+	_pairDeque.clear();
+	gettimeofday(&_time_deque, NULL);
 }
 
 void	Pmerge::doFordJohnson()

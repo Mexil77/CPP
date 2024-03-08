@@ -37,8 +37,8 @@ class Pmerge
 		std::string	getTimeLapsed(timeval& start, timeval& end);
 
 		void		sortEachPairsVector();
-		void		sortPairsVector();
 		void		swapPairInVector(int idx);
+		void		sortPairsVector();
 		void		sortPairsDeque(size_t size);
 
 		void		mergePairsVector();
@@ -46,7 +46,7 @@ class Pmerge
 		void		mergePairsDeque();
 		void		mergePairsJacobsthalDeque();
 
-		size_t	binaryInsertionRecursiveVector(int value, ssize_t right, ssize_t left);
+	
 		size_t	binaryInsertionRecursiveDeque(int value, ssize_t right, ssize_t left);
     private:
 		std::deque<int>						_deque;

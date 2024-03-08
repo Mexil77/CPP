@@ -122,23 +122,6 @@ void	Pmerge::sortPairsDeque(size_t size)
 	_pairDeque[index + 1] = final;
 }
 
-// find final position in vector or keep dividing 
-size_t	Pmerge::binaryInsertionRecursiveVector(int value, ssize_t left, ssize_t right)
-{
-	if (right <= left)
-	{
-		if (value > _vect[left])
-			return (left + 1);
-		return (left);
-	}
-	ssize_t middle = (left + right) / 2;
-	if (value == _vect[middle])
-		return (middle + 1);
-	if (value > _vect[middle])
-		return (binaryInsertionRecursiveVector(value, middle + 1, right));
-	return (binaryInsertionRecursiveVector(value, left, middle - 1));
-}
-
 size_t	Pmerge::binaryInsertionRecursiveDeque(int value, ssize_t left, ssize_t right)
 {
 	if (right <= left)
@@ -385,7 +368,7 @@ void	Pmerge::sortVector()
 
 	if (_pairVect.size() >= 2)
 		mergePairsJacobsthalVector();
-	else 
+	else
 		mergePairsVector();
 
 	if (oddVector > -1)

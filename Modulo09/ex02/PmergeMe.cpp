@@ -110,21 +110,6 @@ void	Pmerge::sortPairsDeque()
 			swapPairInDeque(j--);
 }
 
-size_t	getJacobsthalValue(size_t jacobsthalIdx)
-{
-	if (jacobsthalIdx == 0 || jacobsthalIdx == 1)
-		return jacobsthalIdx;
-	size_t i_1 = 1;
-	size_t i_0 = 0;
-	for (size_t n = 2; n <= jacobsthalIdx; n++)
-	{
-		size_t aux = i_1 + (2 * i_0);
-		i_0 = i_1;
-		i_1 = aux;
-	}
-	return i_1 - 1;
-}
-
 int	jacobsthal(int n){
     if (n == 0) return 0;
     if (n == 1) return 1;
@@ -155,8 +140,8 @@ bool	isInVector(std::vector<int> vect, int toFind){
 	return false;
 }
 
-bool	isInDeque(std::deque<int> vect, int toFind){
-	for (std::deque<int>::iterator iter = vect.begin(); iter < vect.end(); iter++)
+bool	isInDeque(std::deque<int> deque, int toFind){
+	for (std::deque<int>::iterator iter = deque.begin(); iter < deque.end(); iter++)
 		if (*iter == toFind) return true;
 	return false;
 }
@@ -234,6 +219,7 @@ void	Pmerge::mergePairsJacobsthalVector()
 			idxSequence.push_back(jacobSecuence[0]);
 			pendSelected = pend[jacobSecuence[0] - 1];
 			jacobSecuence.erase(jacobSecuence.begin());
+			iterator--;
 			isJacobianComp = true;
 		}else {
 			if (isInVector(idxSequence, iterator)) iterator++;
@@ -270,6 +256,7 @@ void	Pmerge::mergePairsJacobsthalDeque()
 			idxSequence.push_back(jacobSecuence[0]);
 			pendSelected = pend[jacobSecuence[0] - 1];
 			jacobSecuence.erase(jacobSecuence.begin());
+			iterator--;
 			isJacobianComp = true;
 		}else {
 			if (isInDeque(idxSequence, iterator)) iterator++;

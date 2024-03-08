@@ -78,10 +78,10 @@ Pmerge::Pmerge(int argc, std::string argv[])
 		std::cout << e.what() << std::endl;
 		exit (1);
 	}
-	this->fillContainers(argv, argc - 1);
-	this->_odd_deque = -1;
 	gettimeofday(&_start_vect, NULL);
 	gettimeofday(&_start_deque, NULL);
+	this->fillContainers(argv, argc - 1);
+	this->_odd_deque = -1;
 }
 
 void	Pmerge::swapPairInVector(int idx) {
@@ -215,6 +215,31 @@ bool	isInVector(std::vector<int> vect, int toFind){
 	return false;
 }
 
+std::vector<int>::iterator	findIterPosBinaryInsertion(std::vector<int> *vect, int iterValueToFind){
+	int	start = 0;
+	int	end = vect->size() - 1;
+	int	comp = 0;
+	std::vector<int>::iterator	iterPosition;
+
+	while (start <= end)
+	{
+		comp = (start + end) / 2;
+		if ((*vect)[comp] <= iterValueToFind)
+		{
+			if (comp < (int)vect->size() - 1 && (*vect)[comp + 1] > iterValueToFind)
+				return vect->begin() + comp + 1;
+			start = comp + 1;
+		}
+		else if ((*vect)[comp] > iterValueToFind)
+		{
+			if (comp > 0 && (*vect)[comp - 1] < iterValueToFind)
+				return vect->begin() + comp;
+			end = comp - 1;
+		}
+	}
+	return vect->begin() + start;
+}
+
 std::vector<int>::iterator	findIterPosToInsert(std::vector<int> *vect, int iterValueToFind){
 	for (std::vector<int>::iterator it = vect->begin(); it < vect->end(); it++)
 		if (*it >= iterValueToFind) return it;
@@ -251,9 +276,9 @@ void	Pmerge::mergePairsJacobsthalVector()
 			idxSequence.push_back(iterator);
 			isJacobianComp = false;
 		}
-		std::vector<int>::iterator	iteratorPos = findIterPosToInsert(&this->_vect, pendSelected);
+		// std::vector<int>::iterator	iteratorPos = findIterPosBinaryInsertion(&this->_vect, pendSelected);
 
-		this->_vect.insert(iteratorPos, pendSelected);
+		this->_vect.insert(findIterPosBinaryInsertion(&this->_vect, pendSelected), pendSelected);
 		iterator++;
 	}
 }
@@ -364,7 +389,7 @@ void	Pmerge::sortVector()
 		mergePairsVector();
 
 	if (oddVector > -1)
-		this->_vect.insert(findIterPosToInsert(&this->_vect, oddVector), oddVector);
+		this->_vect.insert(findIterPosBinaryInsertion(&this->_vect, oddVector), oddVector);
 	_pairVect.clear();
 	gettimeofday(&_time_vect, NULL);
 }
